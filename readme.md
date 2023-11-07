@@ -63,7 +63,7 @@ docker build -t hrease-frontend .
 
 ```sh
 
-docker run hrease-frontend
+docker run -d -p 3000:3000 hrease-frontend
 
 ```
 
