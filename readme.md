@@ -63,7 +63,7 @@ docker build -t hrease-frontend .
 
 ```sh
 
-docker run -dp 8090:8090 hrease-backend
+docker run hrease-frontend
 
 ```
 
