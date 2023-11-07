@@ -51,19 +51,19 @@ cd frontend
 
 ```
 
-2\. Inside the `frontend` directory, install the project dependencies using npm:
+2\. Within the `frontend` directory, you will find a `Dockerfile`, the `src`and `public` directory. Build the Docker image for PocketBase:
 
 ```sh
 
-npm install
+docker build -t hrease-frontend .
 
 ```
 
-3\. Once the dependencies are installed, you can start the React development server:
+3\. After the image has been built, you can run the frontend react app:
 
 ```sh
 
-npm start
+docker run -dp 8090:8090 hrease-backend
 
 ```
 
