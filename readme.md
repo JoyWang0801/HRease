@@ -9,6 +9,35 @@ Before proceeding, ensure you have the following installed on your system:
 - Docker
 - Node.js and npm
 
+## Total Setup
+To build both frontend and backend of the application, you will be using Docker-compose.
+
+1\.Ensure you are located in the root directory of the application
+
+```sh
+$ ./HRease
+```
+
+2\. Under the root directory, you will find a `compose.yaml` file. This will build both frontend and backend docker images:
+```sh
+docker-compose build
+```
+
+3\. To force a full rebuild use:
+```sh
+docker-compose build --no-cache
+```
+
+4\. Or execute the following command directly to build and run docker-compose in detach mode:
+```sh
+docker-compose up --build -d
+```
+
+5\. To stop and remove container use:
+```sh
+docker-compose down
+```
+
 ## Backend Setup
 
 The backend for HRease is powered by PocketBase. To launch the backend service, you'll be using Docker.
