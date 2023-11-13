@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, TextField, Container, Typography } from '@mui/material';
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://localhost:8090'); // Replace with your PocketBase server URL
+const pb = new PocketBase('http://localhost:8080'); // Replace with your PocketBase server URL
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
