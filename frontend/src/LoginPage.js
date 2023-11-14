@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, TextField, Container, Typography } from '@mui/material';
-import PocketBase from 'pocketbase';
-const pb = new PocketBase('http://localhost:8080'); // Replace with your PocketBase server URL
+import pb from "./lib/pocketbase";
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -13,18 +12,18 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             // Perform the login via PocketBase SDK
-            var user = await pb.collection('users').authWithPassword(email, password);
+            let user = await pb.collection('users').authWithPassword(email, password);
             setLoggedIn(true);
             console.log('User logged in', user);
             // You might want to save the user token to localStorage and redirect to the dashboard, for example:
             localStorage.setItem('authToken', user.token);
             // Redirect to dashboard or another route depending on your application's flow
 
-
         } catch (err) {
             console.error('Failed to login:', err);
             setError(err.message);
         }
+
     };
 
     if(isLoggedIn)
