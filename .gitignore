@@ -1,2 +1,4 @@
 
 .DS_Store
+.gitignore
+./backend/pocketbase/pb_data/
