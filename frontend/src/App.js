@@ -1,16 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import LoginPage from './LoginPage'; // Assuming LoginPage is in the same directory
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-function test()
-{
-
-}
+// Create a theme instance.
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#556cd6',
+    },
+    secondary: {
+      main: '#19857b',
+    },
+    error: {
+      main: '#ff1744',
+    },
+    background: {
+      default: '#fff',
+    },
+  },
+});
 
 function App() {
-  <button onClick={test}>
-    Click
-  </button>
-  return <></>;
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <LoginPage />
+    </ThemeProvider>
+  );
 }
 
 export default App;
