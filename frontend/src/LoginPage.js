@@ -1,28 +1,53 @@
 import React, { useState } from 'react';
 import { Button, TextField, Container, Typography } from '@mui/material';
 import PocketBase from 'pocketbase';
-
-const pb = new PocketBase('http://localhost:8090'); // Replace with your PocketBase server URL
+const pb = new PocketBase('http://localhost:8080'); // Replace with your PocketBase server URL
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoggedIn, setLoggedIn] = useState(pb.authStore.isValid);
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             // Perform the login via PocketBase SDK
-            const user = await pb.collection('users').authWithPassword(email, password);
+            var user = await pb.collection('users').authWithPassword(email, password);
+            setLoggedIn(true);
             console.log('User logged in', user);
             // You might want to save the user token to localStorage and redirect to the dashboard, for example:
             localStorage.setItem('authToken', user.token);
             // Redirect to dashboard or another route depending on your application's flow
+
+
         } catch (err) {
             console.error('Failed to login:', err);
             setError(err.message);
         }
     };
+
+    if(isLoggedIn)
+    {
+        return (
+            <>
+                <h1>Logged In: {pb.authStore.model.email}</h1>
+                <Button
+                    type="submit"
+                    fullWidth
+                    variant="outlined"
+                    color="primary"
+                    style={{ margin: '24px 0 16px' }}
+                    onClick={()=>{
+                        pb.authStore.clear();
+                        setLoggedIn(false);
+                    }}
+                >
+                    Logout
+                </Button>
+            </>
+        )
+    }
 
     return (
         <Container component="main" maxWidth="xs">
