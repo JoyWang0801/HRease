@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, TextField, Grid, Typography, CardContent } from '@mui/material';
+import { Card, Box, TextField, Grid, Typography, CardContent } from '@mui/material';
 
 const PersonalInformationForm = ({ formData }) => {
   const cardStyle = {

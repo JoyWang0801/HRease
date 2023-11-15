@@ -14,7 +14,7 @@ const EmployeeProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const record = await pb.collection('employees').getOne('ewhkapeug9bau3i');
+        const record = await pb.collection('employees').getOne('alqpm56ja6arfd0');
         setEmployeeData(record);
       } catch (error) {
         console.error('Failed to fetch data:', error);
