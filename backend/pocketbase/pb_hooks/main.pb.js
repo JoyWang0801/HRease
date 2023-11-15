@@ -1,7 +1,19 @@
+const {validateEmployee} = require("/pb/db_models/employee");
+
 routerAdd("GET", "/hello/:name", (c) => {
     let name = c.pathParam("name")
+    try
+    {
+        console.log("hiiiiii");
+        console.log(c);
+        let msg = validateEmployee(c);
+        return c.json(200, { "message": `Hello ${name} ${msg}`})
 
-    return c.json(200, { "message": "Hello " + name })
+    }
+    catch (err)
+    {
+        return c.json(200, err);
+    }
 })
 
 routerAdd("GET", "/testRoute", (c) => {

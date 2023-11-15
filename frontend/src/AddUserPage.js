@@ -67,7 +67,7 @@ const AddUserPage = () => {
 
             try {
                 let name = "sana";
-                const response = await axios.get(pb.baseUrl + `/hello/${name}`);
+                const response = await axios.get(pb.baseUrl + `/testRoute`);
                 console.log(response);
             } catch (error) {
                 console.error('Error fetching file content:', error);
@@ -78,9 +78,33 @@ const AddUserPage = () => {
         }
     }
 
+    async function testSubmit() {
+        try {
+            let admin = await pb.admins.authWithPassword("test@admin.com", "9gnpjtCvolfWrNe-JZtrMZBVr5c0bzMD");
+            try {
+                let name = "sana";
+                const response = await axios.get(pb.baseUrl + `/testRoute`);
+                console.log(response);
+            } catch (error) {
+                console.error('Error fetching file content:', error);
+            }
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
     return (
         <>
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={testSubmit}
+            >
+                Test Connect
+            </Button>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" spacing={2}>
                     <DemoPaper elevation={6} square={false}>
