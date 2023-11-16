@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
 import {Button, TextField, Container, Typography, MenuItem, styled, Card} from '@mui/material';
-import Paper from '@mui/material/Paper';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import pb from "./lib/pocketbase";
 import Stack from '@mui/material/Stack';
-import {Form, useForm} from "react-hook-form";
-import axios from 'axios';
+import {useForm} from "react-hook-form";
 
 
 const DemoPaper = styled(Card)(({ theme }) => ({
@@ -48,26 +44,25 @@ const AddUserPage = () => {
     const { register, handleSubmit, reset, control, setValue } = useForm();
     async function onSubmit(data) {
         try {
-            console.log(data);
+            console.log(`data before send: ${JSON.stringify(data)}`);
 
             //let admin = await pb.admins.authWithPassword("test@admin.com", "9gnpjtCvolfWrNe-JZtrMZBVr5c0bzMD");
             let admin = await pb.admins.authWithPassword("test@admin.com", "9gnpjtCvolfWrNe-JZtrMZBVr5c0bzMD");
-            // example create data
-            // const data = {
-            //     "Authorization": admin.token,
-            //     "City": "rvrv",
-            //     "Email": "twice@twice.com",
-            //     "DateOfBirth": formData.get("dateOfBirth")
-            //
-            //     //ID, Name, Gender, SSN, Emergency Contact, Department, Position, Avatar, Starting Date, Bank Account.
-            // };
 
             //const record = await pb.collection('test').create(data);
             //console.log(record);
 
             try {
-                let name = "sana";
-                const response = await axios.get(pb.baseUrl + `/testRoute`);
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const myInit = {
+                    method: "POST",
+                    headers: {"Content-Type": "application/json"},
+                    body : JSON.stringify(data)
+                };
+
+                let response = await pb.send("/testRoute", myInit)
                 console.log(response);
             } catch (error) {
                 console.error('Error fetching file content:', error);
@@ -82,9 +77,18 @@ const AddUserPage = () => {
         try {
             let admin = await pb.admins.authWithPassword("test@admin.com", "9gnpjtCvolfWrNe-JZtrMZBVr5c0bzMD");
             try {
-                let name = "sana";
-                const response = await axios.get(pb.baseUrl + `/testRoute`);
-                console.log(response);
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const myInit = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body : JSON.stringify({name : "sana"})
+                };
+
+                 let response = await pb.send("/testRoute", myInit)
+                 console.log(response);
+
             } catch (error) {
                 console.error('Error fetching file content:', error);
             }
