@@ -4,14 +4,14 @@ import { Card, CardContent, Typography, Avatar, Box } from '@mui/material';
 const ProfileCard = ({ first_name, last_name, role, employment_type, imageUrl }) => {
   const cardStyle = {
     backgroundColor: "#6EB38E",
-    borderRadius: "15px",
-    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
+    borderRadius: "16px",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
   };
 
   const avatarStyle = {
-    width: 64,
-    height: 64,
-    marginRight: "16px",
+    width: 188,
+    height: 188,
+    marginRight: "24px",
   };
 
   return (
@@ -20,13 +20,13 @@ const ProfileCard = ({ first_name, last_name, role, employment_type, imageUrl })
         <Box display="flex" alignItems="center">
           <Avatar style={avatarStyle} src={imageUrl} alt={`${first_name} ${last_name}`} />
           <Box>
-            <Typography variant="h6" color="textPrimary">
+            <Typography sx={{ fontSize: 25 }}>
               {`${first_name}`}
             </Typography>
-            <Typography variant="h4" color="textPrimary">
+            <Typography sx={{ fontSize: 30, fontWeight: 'bold' }}>
               {`${last_name}`}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
+            <Typography sx={{ fontSize: 15 }}>
               {`${role} • ${employment_type}`}
             </Typography>
           </Box>
