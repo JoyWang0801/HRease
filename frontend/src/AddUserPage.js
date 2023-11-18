@@ -13,7 +13,8 @@ const DemoPaper = styled(Card)(({ theme }) => ({
     height: "auto",
     padding: theme.spacing(2),
     ...theme.typography.body2,
-    textAlign: 'center'
+    textAlign: 'center',
+
 }));
 
 const genders = [
@@ -73,46 +74,46 @@ const AddUserPage = () => {
         }
     }
 
-    async function testSubmit() {
-        try {
-            let admin = await pb.admins.authWithPassword("test@admin.com", "9gnpjtCvolfWrNe-JZtrMZBVr5c0bzMD");
-            try {
-                const myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-
-                const myInit = {
-                    method: "POST",
-                    headers: myHeaders,
-                    body : JSON.stringify({name : "sana"})
-                };
-
-                 let response = await pb.send("/testRoute", myInit)
-                 console.log(response);
-
-            } catch (error) {
-                console.error('Error fetching file content:', error);
-            }
-
-        } catch (e) {
-            console.log(e);
-        }
-    }
+    // async function testSubmit() {
+    //     try {
+    //         let admin = await pb.admins.authWithPassword("test@admin.com", "9gnpjtCvolfWrNe-JZtrMZBVr5c0bzMD");
+    //         try {
+    //             const myHeaders = new Headers();
+    //             myHeaders.append("Content-Type", "application/json");
+    //
+    //             const myInit = {
+    //                 method: "POST",
+    //                 headers: myHeaders,
+    //                 body : JSON.stringify({name : "sana"})
+    //             };
+    //
+    //              let response = await pb.send("/testRoute", myInit)
+    //              console.log(response);
+    //
+    //         } catch (error) {
+    //             console.error('Error fetching file content:', error);
+    //         }
+    //
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
 
     return (
         <>
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={testSubmit}
-            >
-                Test Connect
-            </Button>
+            {/*<Button*/}
+            {/*    type="submit"*/}
+            {/*    fullWidth*/}
+            {/*    variant="contained"*/}
+            {/*    sx={{ mt: 3, mb: 2 }}*/}
+            {/*    onClick={testSubmit}*/}
+            {/*>*/}
+            {/*    Test Connect*/}
+            {/*</Button>*/}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack direction="row" spacing={2}>
-                    <DemoPaper elevation={6} square={false}>
-                        <Typography component="h1" variant="h5">
+                    <DemoPaper elevation={6} square={false} >
+                        <Typography component="h1" variant="h5" sx={{m:5}}>
                             Personal Info
                         </Typography>
                         <Grid container spacing={2}>
@@ -146,16 +147,6 @@ const AddUserPage = () => {
                                     type="string"
                                     autoComplete="address"
                                     {...register("address")}
-                                />
-                            </Grid>
-                            <Grid item xs={12}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    label="Password"
-                                    type="password"
-                                    autoComplete="new-password"
-                                    {...register("password")}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -218,12 +209,6 @@ const AddUserPage = () => {
                                     {...register("postCode")}
                                 />
                             </Grid>
-                            <Grid item xs={12}>
-                                <FormControlLabel
-                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                    label="I want to receive inspiration, marketing promotions and updates via email."
-                                />
-                            </Grid>
                             <Button
                                 type="submit"
                                 fullWidth
@@ -232,17 +217,10 @@ const AddUserPage = () => {
                             >
                                 Sign Up
                             </Button>
-                            <Grid container justifyContent="center">
-                                <Grid item>
-                                    <Link href="#" variant="body2">
-                                        Already have an account? Sign in
-                                    </Link>
-                                </Grid>
-                            </Grid>
                         </Grid>
                     </DemoPaper>
                     <DemoPaper elevation={6} square={false}>
-                            <Typography component="h1" variant="h5">
+                            <Typography component="h1" variant="h5" sx={{m: 5}}>
                                 Contact Info
                             </Typography>
                             <Container component="main" maxWidth="xs">
@@ -274,7 +252,8 @@ const AddUserPage = () => {
                                 </Grid>
                             </Container>
 
-                            <Typography component="h1" variant="h5">
+
+                            <Typography component="h1" variant="h5" sx={{m: 5}}>
                                 Emergency Contact
                             </Typography>
                             <Container component="main" maxWidth="xs">
@@ -286,7 +265,6 @@ const AddUserPage = () => {
                                             type="text"
                                             autoFocus
                                             {...register("relationship")}
-
                                         />
                                     </Grid>
                                     <Grid item xs={12} sm={6}>
@@ -319,6 +297,7 @@ const AddUserPage = () => {
                                     </Grid>
                                 </Grid>
                             </Container>
+
                     </DemoPaper>
                 </Stack>
             </form>
