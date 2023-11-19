@@ -13,9 +13,6 @@ services:
         source: ./backend/pocketbase/pb_data
         target: /pb/pb_data
       - type: bind
-        source: ./backend/pocketbase/db_models
-        target: /pb/db_models
-      - type: bind
         source: ./backend/pocketbase/pb_hooks
         target: /pb/pb_hooks
 

@@ -1,10 +1,11 @@
 import React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import {BrowserRouter, Route, Router, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AddUserPage from "./AddUserPage";
 import LoginPage from "./LoginPage";
 import BranchView from "./BranchView";
+import PersonalView from "./PersonalView";
 
 // Create a theme instance.
 const theme = createTheme({
@@ -12,7 +13,8 @@ const theme = createTheme({
         primary: {
             main: '#6EB38E',
             light: '#C4E0D1',
-            dark: '#517562'
+            dark: '#517562',
+            contrastText:'#ffffff'
         },
         secondary: {
             main: '#19857b',
@@ -35,7 +37,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/addUser" element={<AddUserPage />} />
-                <Route path="/personal" element={<BranchView/>}/>
+                <Route path="/branch" element={<BranchView/>}/>
+                <Route path="/personal" element={<PersonalView/>}/>
             </Routes>
           </BrowserRouter>
         </ThemeProvider>

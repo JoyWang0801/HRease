@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import {Button, TextField, Container, Typography, Box, Paper, Avatar, Card, CardHeader} from '@mui/material';
+import { Container, Typography, Box, Paper, Avatar} from '@mui/material';
 import pb from "./lib/pocketbase";
 import Grid from "@mui/material/Grid";
 
@@ -69,8 +68,8 @@ const BranchView =  () => {
                                 {employee.avatar ?
                                     // TODO - will change to dynamic loading instead of hardcoding
                                     <Avatar srcSet={`${pb.baseUrl}/api/files/${employee.collectionId}/${employee.id}/${employee.avatar}`}
-                                    sx={{ width: 60, height: 60, marginLeft: 'auto'}} /> :
-                                    <Avatar sx={{ width: 60, height: 60, marginLeft: 'auto'}}>
+                                    sx={{ width: 120, height: 120, marginLeft: 'auto'}} /> :
+                                    <Avatar sx={{ width: 120, height: 120, marginLeft: 'auto'}}>
                                         {employee.lastName[0]}
                                     </Avatar>
                                 }

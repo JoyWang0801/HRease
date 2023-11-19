@@ -1,7 +1,4 @@
 import {Button, TextField, Container, Typography, MenuItem, styled, Card} from '@mui/material';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import pb from "./lib/pocketbase";
 import Stack from '@mui/material/Stack';
@@ -42,7 +39,7 @@ const genders = [
 
 // TODO - velidate in frontend
 const AddUserPage = () => {
-    const { register, handleSubmit, reset, control, setValue } = useForm();
+    const { register, handleSubmit} = useForm();
     async function onSubmit(data) {
         try {
             console.log(`data before send: ${JSON.stringify(data)}`);
