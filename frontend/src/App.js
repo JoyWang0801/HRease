@@ -1,34 +1,13 @@
 import React from 'react';
-import LoginPage from './LoginPage'; // Assuming LoginPage is in the same directory
-import EmployeeView from './EmployeeView';
-import CssBaseline from '@mui/material/CssBaseline';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-
-// Create a theme instance.
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#556cd6',
-    },
-    secondary: {
-      main: '#19857b',
-    },
-    error: {
-      main: '#ff1744',
-    },
-    background: {
-      default: '#fff',
-    },
-  },
-});
+import GeneralBranchPage from './components/GeneralBranchPage';
+import GlobalStyles from './components/styles/Global';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {/* <LoginPage /> */}
-      <EmployeeView />
-    </ThemeProvider>
+		<div>
+			<GlobalStyles />
+			<GeneralBranchPage />
+		</div>
   );
 }
 
