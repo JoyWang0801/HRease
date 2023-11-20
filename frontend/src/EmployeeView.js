@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import PocketBase from 'pocketbase';
-import { Container, Box, Paper, Grid } from '@mui/material';
+import { Container, Box, Grid } from '@mui/material';
 import Sidebar from './Sidebar';
 import ProfileCard from './ProfileCard';
 import PersonalInformationForm from './PersonalInformationForm';
 import ContactInformationForm from './ContactInformationForm';
+import pb from "./lib/pocketbase";
 
-const pb = new PocketBase('http://localhost:8080');
 pb.autoCancellation(false);
 
 const EmployeeProfile = () => {
@@ -15,7 +14,7 @@ const EmployeeProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const record = await pb.collection('employees').getOne('alqpm56ja6arfd0');
+        const record = await pb.collection('employee').getOne('l7t4rmttf39l8tk');
         setEmployeeData(record);
       } catch (error) {
         console.error('Failed to fetch data:', error);

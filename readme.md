@@ -62,11 +62,11 @@ docker build -t hrease-backend .
 
 ```sh
 
-docker run -dp 8090:8090 hrease-backend
+docker run -dp 8080:8080 hrease-backend
 
 ```
 
-This command will start a Docker container running PocketBase and will expose it on port `8090`.
+This command will start a Docker container running PocketBase and will expose it on port `8080`.
 
 ## Frontend Setup
 
@@ -103,7 +103,7 @@ This command will launch the frontend and typically open a browser window pointi
 With both the backend and frontend services running, you can now access the HRease system:
 
 - The frontend can be accessed at `http://localhost:3000`.
-- The backend PocketBase admin panel can be accessed at `http://localhost:8090/admin`.
+- The backend PocketBase admin panel can be accessed at `http://localhost:8080/admin`.
 
 ## Additional Notes
 

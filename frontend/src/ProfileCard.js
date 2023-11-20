@@ -3,7 +3,8 @@ import { Card, CardContent, Typography, Avatar, Box } from '@mui/material';
 
 const ProfileCard = ({ first_name, last_name, role, employment_type, imageUrl }) => {
   const cardStyle = {
-    backgroundColor: "#6EB38E",
+    //backgroundColor: "#6EB38E",
+    backgroundColor: "primary.main",
     borderRadius: "16px",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
   };

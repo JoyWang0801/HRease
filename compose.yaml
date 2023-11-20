@@ -2,14 +2,19 @@ services:
   frontend:
     build: ./frontend
     ports:
-      - "3000:3000"
+      - "3010:3000"
 
   backend:
     build: ./backend
     ports:
       - "8080:8080"
     volumes:
-      - db-data:/pb/pb_data
+      - type: bind
+        source: ./backend/pocketbase/pb_data
+        target: /pb/pb_data
+      - type: bind
+        source: ./backend/pocketbase/pb_hooks
+        target: /pb/pb_hooks
 
 volumes:
-  db-data:
+  myapp:
