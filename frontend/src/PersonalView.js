@@ -8,9 +8,21 @@ const BranchView =  () => {
     console.log(key);
 
     //let userinfo =
-    function clockIn()
-    {
+    async function clockIn() {
+        var currentdate = new Date();
+        var datetime = "Last Sync: " + currentdate.getDate() + "/"
+            + (currentdate.getMonth() + 1) + "/"
+            + currentdate.getFullYear() + " @ "
+            + currentdate.getHours() + ":"
+            + currentdate.getMinutes() + ":"
+            + currentdate.getSeconds();
 
+        const data = {
+            "clockIn": currentdate,
+            "clockPut": currentdate,
+        };
+
+        const record = await pb.collection('attendance').create(data);
     }
 
     return (
