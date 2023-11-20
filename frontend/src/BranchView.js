@@ -2,13 +2,11 @@ import { Container, Typography, Box, Paper, Avatar} from '@mui/material';
 import pb from "./lib/pocketbase";
 import Grid from "@mui/material/Grid";
 
-let resultList = await pb.collection('Branch').getList(1, 50, {
-    expand: 'employees',
-})
+let resultList = await pb.collection("branch").getList(1, 30, { expand: "employees" })
     .then((result) => {
         // success...
         console.log('Result:', result.items);
-         return result.items;
+        return result.items;
     }).catch((error) => {
         // error...
         console.log('Error:', error);
@@ -52,28 +50,28 @@ const BranchView =  () => {
 
                         return employees.map((employee) => (
                             <Grid item xs={12} sm={6} md={4} key={employee.id}>
-                            <Paper elevation={4} sx={{
-                                p:5,
-                               maxWidth: 345,
-                                flexGrow: 1,
-                                display: 'flex'
-                            }}>
-                                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                                    <Grid item xs={12} sm container direction="column">
-                                        <Typography>{employee.firstName}</Typography>
-                                        <Typography variant="h4">{employee.lastName}</Typography>
-                                        <Typography variant="subtitle2" color="primary.dark" sx={{mt:5}}>{branch.role}</Typography>
-                                    </Grid>
-                                </Box>
-                                {employee.avatar ?
-                                    // TODO - will change to dynamic loading instead of hardcoding
-                                    <Avatar srcSet={`${pb.baseUrl}/api/files/${employee.collectionId}/${employee.id}/${employee.avatar}`}
-                                    sx={{ width: 120, height: 120, marginLeft: 'auto'}} /> :
-                                    <Avatar sx={{ width: 120, height: 120, marginLeft: 'auto'}}>
-                                        {employee.lastName[0]}
-                                    </Avatar>
-                                }
-                            </Paper>
+                                <Paper elevation={4} sx={{
+                                    p:5,
+                                    maxWidth: 345,
+                                    flexGrow: 1,
+                                    display: 'flex'
+                                }}>
+                                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                                        <Grid item xs={12} sm container direction="column">
+                                            <Typography>{employee.firstName}</Typography>
+                                            <Typography variant="h4">{employee.lastName}</Typography>
+                                            <Typography variant="subtitle2" color="primary.dark" sx={{mt:5}}>{branch.role} &#x2022; {branch.employmentType}</Typography>
+                                        </Grid>
+                                    </Box>
+                                    {employee.avatar ?
+                                        // TODO - will change to dynamic loading instead of hardcoding
+                                        <Avatar srcSet={`${pb.baseUrl}/api/files/${employee.collectionId}/${employee.id}/${employee.avatar}`}
+                                                sx={{ width: 120, height: 120, marginLeft: 'auto'}} /> :
+                                        <Avatar sx={{ width: 120, height: 120, marginLeft: 'auto'}}>
+                                            {employee.lastName[0]}
+                                        </Avatar>
+                                    }
+                                </Paper>
                             </Grid>
                         ))
                     })
