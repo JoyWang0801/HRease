@@ -1,4 +1,6 @@
 import React from 'react';
+import LoginPage from './LoginPage'; // Assuming LoginPage is in the same directory
+import EmployeeView from './EmployeeView';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -39,6 +41,7 @@ function App() {
                 <Route path="/addUser" element={<AddUserPage />} />
                 <Route path="/branch" element={<BranchView/>}/>
                 <Route path="/personal" element={<PersonalView/>}/>
+                <Route path="/employee" element={<EmployeeView/>}/>
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
