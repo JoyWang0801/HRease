@@ -1,5 +1,4 @@
 import React from 'react';
-import LoginPage from './LoginPage'; // Assuming LoginPage is in the same directory
 import EmployeeView from './EmployeeView';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
