@@ -41,11 +41,11 @@ const allEmployees = [emp1, emp3]
 
 function DetailedBranchPage() {
 
-    const [filteredNames, setFilteredNames] = useState(allEmployees);
     const [letterFilter, setLetterFilter] = useState("");
 
     const handleLetterClick = (letter) => {
-        setLetterFilter(letterFilter)
+        setLetterFilter(letter)
+        
         if (letter === 'All') {
             setFilteredNames(allEmployees);
         }

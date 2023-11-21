@@ -10,6 +10,20 @@ const pb = new PocketBase('http://localhost:8080');
 pb.autoCancellation(false);
 
 const EmployeeProfile = () => {
+  const [employeeData, setEmployeeData] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const record = await pb.collection('employees').getOne('alqpm56ja6arfd0');
+        setEmployeeData(record);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Container disableGutters maxWidth={false}>
