@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { AlphabetContainer, Letter } from "./styles/AlphabetBar.styled"
 
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+let alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+alphabet.push('All');
 
 function AlphabetBar({onLetterClick}) {
 
