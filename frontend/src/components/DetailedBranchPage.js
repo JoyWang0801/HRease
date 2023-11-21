@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { CardContainer, ContentContainer, ContentWrapper, GreenHeaderContainer, MainContentContainer, PageContainer } from "./styles/Containers"
 import NavBar from "./NavBar"
 import { BranchHeaderContainer, BranchHeader, HeaderMatrix, TagCounter, BranchInformationWrapper } from "./styles/BranchGlobals"
@@ -28,11 +28,32 @@ const emp2 = {
     picture: johnPic
 }
 
+const emp3 = {
+    firstName: "John",
+    lastName: "Doe", 
+    position: "Sales Associate", 
+    jobType: "Full-time", 
+    picture: johnPic
+}
 
-const employees = [emp1, emp2]
 
+const allEmployees = [emp1, emp2]
 
 function DetailedBranchPage() {
+    const [filteredNames, setFilteredNames] = useState(allEmployees);
+    const [letterFilter, setLetterFilter] = useState("");
+
+    const handleLetterClick = (letter) => {
+        setLetterFilter(letter);
+        const filteredEmployees = allEmployees.filter((person) => {
+            const firstLetterLastName = person.lastName.charAt(0).toUpperCase();
+            return firstLetterLastName === letter;
+        });
+        console.log(filteredEmployees);
+        console.log(`Clicking from branch ${letter}`);
+        setFilteredNames(filteredEmployees);
+    }
+
     return(
         <PageContainer>
             <NavBar />
@@ -50,7 +71,7 @@ function DetailedBranchPage() {
                                 <BranchHeader>Varsity Drive • Calgary, AB</BranchHeader>
                                 <TagCounter>53 Employees</TagCounter>
                             </HeaderMatrix> 
-                            <AlphabetBar />
+                            <AlphabetBar onLetterClick={handleLetterClick}/>
                         </BranchInformationWrapper>
                     </BranchHeaderContainer>
                 </GreenHeaderContainer>
@@ -60,11 +81,11 @@ function DetailedBranchPage() {
                     </ContentWrapper>
                     <ContentWrapper>
                         <HeaderMatrix>
-                            <AlphabetHeader letter={ "A" }/>
-                            <EmployeeTagCounter>2 Employees</EmployeeTagCounter>
+                            <AlphabetHeader letter={letterFilter }/>
+                            <EmployeeTagCounter>{filteredNames.length} Employees</EmployeeTagCounter>
                         </HeaderMatrix>
                         <CardContainer>
-                            {employees.map((employee, i) => (
+                            {filteredNames.map((employee, i) => (
                                 <EmployeeCard key={i} employee={employee}/>
                             ))}
                         </CardContainer>
