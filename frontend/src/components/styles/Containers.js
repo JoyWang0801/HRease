@@ -24,8 +24,6 @@ export const GreenHeaderContainer = styled.div`
 export const ContentContainer = styled.div`
     display: flex;
     width: 90%;
-    height: 500px;
-    /* background-color: green; */
 `
 
 export const ContentWrapper = styled.div`
@@ -33,6 +31,4 @@ export const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 85%;
-    height: 500px;
-    /* background-color: blue; */
 `

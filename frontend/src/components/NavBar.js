@@ -10,7 +10,7 @@ function NavBar() {
                 <NavItems>
                     <NavItem>Dashboard</NavItem>
                     <NavItem>Employee</NavItem>
-                    <NavItem>Branch</NavItem>
+                    <NavItem>Branches</NavItem>
                     <NavItem>Map</NavItem>
                 </NavItems>
             </Nav>

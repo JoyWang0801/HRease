@@ -1,11 +1,10 @@
 import React from 'react'
-import Sidebar from '../Sidebar'
 import { GreenHeaderContainer, MainContentContainer, PageContainer, ContentContainer, ContentWrapper } from './styles/Containers'
 import NavBar from './NavBar'
-import { AlphabetContainer, BranchCount, BranchHeader, BranchHeaderContainer, BranchHeaderMatrix, GeneralSearch, Letter } from './styles/GeneralBranchPage.styled'
+import { BranchHeader, BranchHeaderMatrix, TagCounter } from './styles/BranchGlobals'
+import { GeneralBranchHeaderContainer } from './styles/GeneralBranchPage.styled'
 import SearchBar from './SearchBar'
-
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+import AlphabetBar from './AlphabetBar'
 
 function GeneralBranchPage() {
     
@@ -14,17 +13,13 @@ function GeneralBranchPage() {
             <NavBar />
             <MainContentContainer>
                 <GreenHeaderContainer>
-                    <BranchHeaderContainer>
+                    <GeneralBranchHeaderContainer>
                         <BranchHeaderMatrix>
                             <BranchHeader>Branches</BranchHeader>
-                            <BranchCount>12 Branches</BranchCount>
+                            <TagCounter>12 Branches</TagCounter>
                         </BranchHeaderMatrix>
-                        <AlphabetContainer>
-                            {alphabet.map((letter, i) => (
-                                <Letter>{letter}</Letter>
-                            ))}
-                        </AlphabetContainer>
-                    </BranchHeaderContainer>
+                        <AlphabetBar />
+                    </GeneralBranchHeaderContainer>
                 </GreenHeaderContainer>
                 <ContentContainer>
                     <ContentWrapper>

@@ -16,10 +16,10 @@ export const Search = styled.input`
     font-size: 16px;
     padding: 0 30px;
     color: var(--hre-dark-green);
-    transition: 0.4s ease-in-out;
+    transition: 0.3s ease-in-out;
 
     &:hover {
-        transform: scale(1.01);
+        transform: translateY(-3px);
     }
 
     &::placeholder {
