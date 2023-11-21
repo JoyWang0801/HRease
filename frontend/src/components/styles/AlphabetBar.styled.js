@@ -18,3 +18,7 @@ export const Letter = styled.div`
         cursor: pointer;
     }
 `
+
+export const AlphaHeader = styled.h1`
+
+`

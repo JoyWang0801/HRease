@@ -7,7 +7,7 @@ function AlphabetBar() {
     return (
         <AlphabetContainer>
             {alphabet.map((letter, i) => (
-                <Letter>{letter}</Letter>
+                <Letter key={i}>{letter}</Letter>
             ))}
         </AlphabetContainer>
     )

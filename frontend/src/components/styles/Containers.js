@@ -23,6 +23,8 @@ export const GreenHeaderContainer = styled.div`
 
 export const ContentContainer = styled.div`
     display: flex;
+    flex-direction: column;
+    gap: 35px;
     width: 90%;
 `
 
@@ -31,4 +33,10 @@ export const ContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     width: 85%;
+    gap: 30px;
+`
+
+export const CardContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
 `
