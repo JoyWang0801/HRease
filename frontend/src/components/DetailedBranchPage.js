@@ -1,9 +1,9 @@
 import React from "react"
 import { CardContainer, ContentContainer, ContentWrapper, GreenHeaderContainer, MainContentContainer, PageContainer } from "./styles/Containers"
 import NavBar from "./NavBar"
-import { BranchHeaderContainer, BranchHeader, BranchHeaderMatrix, TagCounter, BranchInformationWrapper } from "./styles/BranchGlobals"
+import { BranchHeaderContainer, BranchHeader, HeaderMatrix, TagCounter, BranchInformationWrapper } from "./styles/BranchGlobals"
 import AlphabetBar from "./AlphabetBar";
-import { BackButton, ButtonContainer, ButtonLabel, FAArrow } from "./styles/DetailedBranchPage.styled";
+import { BackButton, ButtonContainer, ButtonLabel, EmployeeTagCounter, FAArrow } from "./styles/DetailedBranchPage.styled";
 import SearchBar from "./SearchBar";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import AlphabetHeader from "./AlphabetHeader";
@@ -46,10 +46,10 @@ function DetailedBranchPage() {
                             <ButtonLabel>Branches</ButtonLabel>
                         </ButtonContainer>
                         <BranchInformationWrapper>
-                            <BranchHeaderMatrix>
+                            <HeaderMatrix>
                                 <BranchHeader>Varsity Drive • Calgary, AB</BranchHeader>
                                 <TagCounter>53 Employees</TagCounter>
-                            </BranchHeaderMatrix> 
+                            </HeaderMatrix> 
                             <AlphabetBar />
                         </BranchInformationWrapper>
                     </BranchHeaderContainer>
@@ -59,7 +59,10 @@ function DetailedBranchPage() {
                         <SearchBar />
                     </ContentWrapper>
                     <ContentWrapper>
-                        <AlphabetHeader letter={ "A" }/>
+                        <HeaderMatrix>
+                            <AlphabetHeader letter={ "A" }/>
+                            <EmployeeTagCounter>2 Employees</EmployeeTagCounter>
+                        </HeaderMatrix>
                         <CardContainer>
                             {employees.map((employee, i) => (
                                 <EmployeeCard key={i} employee={employee}/>

@@ -18,7 +18,7 @@ export const BranchInformationWrapper = styled.div`
     /* background-color: pink; */
 `
 
-export const BranchHeaderMatrix = styled.div`
+export const HeaderMatrix = styled.div`
     display: flex;
     align-items: center;
     gap: 30px;

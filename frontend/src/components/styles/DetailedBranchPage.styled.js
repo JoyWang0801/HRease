@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { TagCounter } from "./BranchGlobals";
 
 export const ButtonContainer = styled.div`
     display: flex;
@@ -30,4 +31,8 @@ export const ButtonLabel = styled.div`
 
 export const FAArrow = styled(FontAwesomeIcon)`
 
+`
+
+export const EmployeeTagCounter = styled(TagCounter)`
+    background-color: rgba(110, 179, 142, 0.41);
 `

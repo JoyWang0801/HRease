@@ -11,6 +11,7 @@ export const Card = styled.div`
     
     &:hover {
         transform: translateY(-3px);
+        cursor: pointer;
     }
 `
 
