@@ -1,13 +1,39 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { List, ListItemButton, ListItemText, Paper, Box } from '@mui/material';
-import logo from './Hrease_logo.png';
+import logo from '../assets/Hrease_logo.png';
+import {useNavigate} from "react-router-dom";
+
 
 const Sidebar = () => {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState();
+  const navigate = useNavigate();
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
+    console.log(index)
+    console.log(selectedIndex)
   };
+
+  useEffect(() => {
+    console.log(selectedIndex);
+    switch (selectedIndex)
+    {
+      case 0:
+        navigate("/personal");
+        break;
+      case 1:
+        navigate("/employee");
+        break;
+      case 2:
+        navigate("/branch");
+        break;
+      case 3:
+        navigate("/");
+        break;
+      default:
+        console.log(`Sorry, we are out of ${selectedIndex}.`);
+    }
+  }, [selectedIndex])
 
   const sidebarStyle = {
     backgroundColor: "white",
@@ -23,7 +49,7 @@ const Sidebar = () => {
   };
 
   const selectedStyle = {
-    color: "#6EB38E",
+    color: "primary.main",
     '& .MuiListItemText-primary': {
       fontWeight: '600',
     }

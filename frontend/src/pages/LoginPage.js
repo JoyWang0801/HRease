@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, TextField, Container, Typography } from '@mui/material';
-import pb from "./lib/pocketbase";
+import pb from "../lib/pocketbase";
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');

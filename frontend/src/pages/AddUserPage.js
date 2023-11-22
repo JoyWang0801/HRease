@@ -1,6 +1,6 @@
 import {Button, TextField, Container, Typography, MenuItem, styled, Card} from '@mui/material';
 import Grid from '@mui/material/Grid';
-import pb from "./lib/pocketbase";
+import pb from "../lib/pocketbase";
 import Stack from '@mui/material/Stack';
 import {useForm} from "react-hook-form";
 

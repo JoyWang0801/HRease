@@ -1,18 +1,12 @@
 import { Container, Typography, Box, Paper, Avatar} from '@mui/material';
-import pb from "./lib/pocketbase";
+import pb from "../lib/pocketbase";
 import Grid from "@mui/material/Grid";
-
-let resultList = await pb.collection("branch").getList(1, 30, { expand: "employees" })
-    .then((result) => {
-        // success...
-        console.log('Result:', result.items);
-        return result.items;
-    }).catch((error) => {
-        // error...
-        console.log('Error:', error);
-    });
+import React, {useEffect, useState} from "react";
+import Sidebar from "../components/Sidebar";
 
 const BranchView =  () => {
+    const [employeeList, setEmployeeList] = useState([]);
+
     // fetch a paginated records list
     function getEmployeeData(employeeArray)
     {
@@ -26,6 +20,23 @@ const BranchView =  () => {
         console.log(url);
         return "http://localhost:8080/api/files/f2zbxcw4ezb95f8/rt0u6dz6haoew95/sana_AwE5UefxN8.jpeg";
     }
+
+    useEffect( () => {
+        async function fetchEmployees() {
+            // Runs ONCE after initial rendering
+            setEmployeeList(await pb.collection("branch").getList(1, 30, {expand: "employees"})
+                .then((result) => {
+                    // success...
+                    console.log('Result:', result.items);
+                    return result.items;
+                }).catch((error) => {
+                    // error...
+                    console.log('Error:', error);
+                }))
+        }
+
+        fetchEmployees();
+    }, []);
 
     return (
         <Container >
@@ -45,7 +56,7 @@ const BranchView =  () => {
                 justifyContent: 'space-evenly',
                 width: '100%'}}>
                 {
-                    resultList.map((branch) => {
+                    employeeList.map((branch) => {
                         const employees = getEmployeeData(branch);
 
                         return employees.map((employee) => (
