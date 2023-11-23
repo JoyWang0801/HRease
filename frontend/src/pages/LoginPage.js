@@ -39,6 +39,7 @@ const LoginPage = () => {
                     style={{ margin: '24px 0 16px' }}
                     onClick={()=>{
                         pb.authStore.clear();
+                        console.log("authStore cleared")
                         setLoggedIn(false);
                     }}
                 >

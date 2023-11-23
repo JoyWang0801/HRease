@@ -4,50 +4,49 @@ import pb from "../lib/pocketbase";
 import Grid from "@mui/material/Grid";
 import '../style/digital-clock.css'
 import Sidebar from "../components/Sidebar";
+import DigitalClock from "../components/DigitalClock";
+
 
 const BranchView =  () => {
-    // let key = localStorage.getItem('authToken');
-    // console.log(key);
+    const [clockedIn, setClockedIn] = useState(false);
+    const [clockInRecord, setClockInRecord] = useState();
+    let key = localStorage.getItem('authToken');
+    let currentTime = new Date();
+    console.log(pb.authStore.model.email)
 
-    let currentdate = new Date();
 
-    async function clockIn() {
-        var datetime = "Last Sync: " + currentdate.getDate() + "/"
-            + (currentdate.getMonth() + 1) + "/"
-            + currentdate.getFullYear() + " @ "
-            + currentdate.getHours() + ":"
-            + currentdate.getMinutes() + ":"
-            + currentdate.getSeconds();
+    async function punchClock() {
+        let datetime = "Last Sync: " + currentTime.getDate() + "/"
+            + (currentTime.getMonth() + 1) + "/"
+            + currentTime.getFullYear() + " @ "
+            + currentTime.getHours() + ":"
+            + currentTime.getMinutes() + ":"
+            + currentTime.getSeconds();
 
-        const data = {
-            "clockIn": currentdate,
-            "clockPut": currentdate,
-        };
-        let fmrDate = new Intl.DateTimeFormat().format(currentdate);
-            console.log(`Date: ${Date}, fmtDate: ${fmrDate}`);
-        const record = await pb.collection('attendance').create(data);
+        const employeeRecord = await pb.collection('employee').getFirstListItem(`workEmail="${pb.authStore.model.email}"`);
+
+       if(!clockedIn)
+       {
+           const fakeDate = new Date(2012, 5, 1,2,3,4);
+           const data = {
+               "clockIn": currentTime,
+               "employee": employeeRecord.id
+           };
+           let fmrDate = new Intl.DateTimeFormat().format(currentTime);
+           console.log(`Date: ${currentTime}, UTC: ${currentTime.toUTCString()}, fmtDate: ${fmrDate}`);
+           setClockInRecord(await pb.collection('attendance').create(data));
+       }
+       else
+       {
+           const fakeDate = new Date(2022, 5, 1,3,4,5);
+           const updateData = {
+               "clockOut": currentTime
+           };
+           const record = await pb.collection('attendance').update(clockInRecord.id, updateData);
+       }
+
+        setClockedIn(!clockedIn);
     }
-
-    const [currentTime, setTime] = useState
-    ({
-            minutes: currentdate.getMinutes(),
-            hours: currentdate.getHours(),
-            seconds: currentdate.getSeconds()
-        }
-    );
-
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            currentdate = new Date();
-            setTime({
-                minutes: currentdate.getMinutes(),
-                hours: currentdate.getHours(),
-                seconds: currentdate.getSeconds()
-            })
-        }, 1000)
-
-        return () => clearInterval(intervalId);
-    }, []);
 
     return (
         <Container disableGutters maxWidth={false}>
@@ -60,9 +59,9 @@ const BranchView =  () => {
                     {/* Main content */}
                     <Grid item xs={12} sm={8} md={9} container spacing={3}>
                         <Grid>
-                            <p > {`${currentTime.hours}:${currentTime.minutes}:${currentTime.seconds}`}</p>
-                            <Button variant="contained" onClick={clockIn}>
-                                ClockIn
+                            <DigitalClock/>
+                            <Button variant="contained" onClick={punchClock}>
+                                {clockedIn === true ? "ClockOut" : "ClockIn"}
                             </Button>
                         </Grid>
                         <Grid sx={{

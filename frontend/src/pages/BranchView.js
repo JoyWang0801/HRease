@@ -14,13 +14,6 @@ const BranchView =  () => {
         return employeeArray.expand.employees;
     }
 
-    async function getAvatarUrl(employee) {
-        const record = await pb.collection('employeeInfo').getOne(employee.id, {requestKey: null});
-        const url = pb.files.getUrl(record, employee.avatar);
-        console.log(url);
-        return "http://localhost:8080/api/files/f2zbxcw4ezb95f8/rt0u6dz6haoew95/sana_AwE5UefxN8.jpeg";
-    }
-
     useEffect( () => {
         async function fetchEmployees() {
             // Runs ONCE after initial rendering
@@ -75,8 +68,7 @@ const BranchView =  () => {
                                         </Grid>
                                     </Box>
                                     {employee.avatar ?
-                                        // TODO - will change to dynamic loading instead of hardcoding
-                                        <Avatar srcSet={`${pb.baseUrl}/api/files/${employee.collectionId}/${employee.id}/${employee.avatar}`}
+                                        <Avatar src={`${pb.baseUrl}/api/files/${employee.collectionId}/${employee.id}/${employee.avatar}`}
                                                 sx={{ width: 120, height: 120, marginLeft: 'auto'}} /> :
                                         <Avatar sx={{ width: 120, height: 120, marginLeft: 'auto'}}>
                                             {employee.lastName[0]}

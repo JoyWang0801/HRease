@@ -7,6 +7,7 @@
 //         return next(c) // proceed with the request chain
 //     }
 // }
+THREE_MIN = 180000
 
 routerAdd("GET", "/hello/:name", (c) => {
    // const util = require(`${__hooks}/db_models/employee.js`)
@@ -34,13 +35,34 @@ routerAdd("GET", "/testRoute", (c) => {
     return c.json(200, { "message": `Hello`})
 })
 
-routerAdd("POST", "/testRoute", (c) => {
-    //console.log("In side POST testRoute")
+routerAdd("POST", "/personal", (c) => {
+    console.log("In side POST personal")
     const data = $apis.requestInfo(c).data
-    //console.log(JSON.stringify(data))
-    const util = require(`${__hooks}/db_models/employee.js`)
-    let msg = util.validateEmployee(data)
-    return c.json(200, { "message": `Hello ${msg}`})
+    console.log(JSON.stringify(data))
+    // const util = require(`${__hooks}/db_models/employee.js`)
+    // let msg = util.validateEmployee(data)
+    let currentTIme = new Date();
+    let clockInTime = new Date(data.clockIn);
+    let timeDiff = currentTIme - clockInTime;
+    console.log(`Difference between clockIn time and process data time is ${timeDiff} millisecond`);
+
+    if(timeDiff < THREE_MIN)
+    {
+        const collection = $app.dao().findCollectionByNameOrId("attendance")
+        const record = new Record(collection)
+        const form = new RecordUpsertForm($app, record)
+        // or form.loadRequest(request, "")
+        form.loadRequest(c, "");
+        form.submit()
+        return c.json(200, { "message": `Valid data, submitted`})
+    }
+    else
+    {
+        return c.json(405, {"message": "Invalid data"})
+    }
+
+
+
 })
 
 onModelAfterUpdate((e) => {
