@@ -41,6 +41,7 @@ const allEmployees = [emp1, emp3]
 
 function DetailedBranchPage() {
 
+    const [filteredNames, setFilteredNames] = useState(allEmployees);
     const [letterFilter, setLetterFilter] = useState("");
 
     const handleLetterClick = (letter) => {
@@ -58,6 +59,15 @@ function DetailedBranchPage() {
             console.log(`Clicking from branch ${letter}`);
             setFilteredNames(filteredEmployees);
         }
+    }
+
+    const handleSearchChange = (event) => {
+        console.log(event.target.value);
+        const filteredEmployees = allEmployees.filter((person) => {
+            return (person.firstName.toLowerCase().includes(event.target.value.toLowerCase()) || 
+            (person.lastName.toLowerCase().includes(event.target.value.toLowerCase())));
+        });
+        setFilteredNames(filteredEmployees);
     }
 
     return (
@@ -83,7 +93,7 @@ function DetailedBranchPage() {
                 </GreenHeaderContainer>
                 <ContentContainer>
                     <ContentWrapper>
-                        <SearchBar />
+                        <SearchBar handleSearchChange={handleSearchChange}/>
                     </ContentWrapper>
                     <ContentWrapper>
                         <HeaderMatrix>
