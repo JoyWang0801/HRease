@@ -5,11 +5,10 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AddUserPage from "./pages/AddUserPage";
 import LoginPage from "./pages/LoginPage";
-import BranchView from "./pages/BranchView";
 import PersonalView from "./pages/PersonalView";
-import GeneralBranchPage from './components/GeneralBranchPage';
+import GeneralBranchPage from './pages/GeneralBranchPage';
 import GlobalStyles from './components/styles/Global';
-import DetailedBranchPage from './components/DetailedBranchPage';
+import DetailedBranchPage from './pages/DetailedBranchPage';
 
 // Create a theme instance.
 const theme = createTheme({

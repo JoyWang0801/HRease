@@ -1,10 +1,10 @@
 import React from 'react'
-import { GreenHeaderContainer, MainContentContainer, PageContainer, ContentContainer, ContentWrapper } from './styles/Containers'
-import NavBar from './NavBar'
-import { BranchHeader, HeaderMatrix, TagCounter } from './styles/BranchGlobals'
-import { GeneralBranchHeaderContainer } from './styles/GeneralBranchPage.styled'
-import SearchBar from './SearchBar'
-import AlphabetBar from './AlphabetBar'
+import { GreenHeaderContainer, MainContentContainer, PageContainer, ContentContainer, ContentWrapper } from '../components/styles/Containers'
+import NavBar from '../components/NavBar'
+import { BranchHeader, HeaderMatrix, TagCounter } from '../components/styles/BranchGlobals'
+import { GeneralBranchHeaderContainer } from '../components/styles/GeneralBranchPage.styled'
+import SearchBar from '../components/SearchBar'
+import AlphabetBar from '../components/AlphabetBar'
 
 function GeneralBranchPage() {
     

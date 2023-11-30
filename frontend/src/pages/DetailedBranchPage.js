@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { CardContainer, ContentContainer, ContentWrapper, GreenHeaderContainer, MainContentContainer, PageContainer } from "./styles/Containers"
-import NavBar from "./NavBar"
-import { BranchHeaderContainer, BranchHeader, HeaderMatrix, TagCounter, BranchInformationWrapper } from "./styles/BranchGlobals"
-import AlphabetBar from "./AlphabetBar";
-import { BackButton, ButtonContainer, ButtonLabel, EmployeeTagCounter, FAArrow } from "./styles/DetailedBranchPage.styled";
-import SearchBar from "./SearchBar";
+import { CardContainer, ContentContainer, ContentWrapper, GreenHeaderContainer, MainContentContainer, PageContainer } from "../components/styles/Containers"
+import NavBar from "../components/NavBar"
+import { BranchHeaderContainer, BranchHeader, HeaderMatrix, TagCounter, BranchInformationWrapper } from "../components/styles/BranchGlobals"
+import AlphabetBar from "../components/AlphabetBar";
+import { BackButton, ButtonContainer, ButtonLabel, EmployeeTagCounter, FAArrow } from "../components/styles/DetailedBranchPage.styled";
+import SearchBar from "../components/SearchBar";
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import AlphabetHeader from "./AlphabetHeader";
-import EmployeeCard from "./EmployeeCard";
+import AlphabetHeader from "../components/AlphabetHeader";
+import EmployeeCard from "../components/EmployeeCard";
 import nohraPic from '../assets/nohra-aaron.png'
 import johnPic from '../assets/john-adams.png'
 
