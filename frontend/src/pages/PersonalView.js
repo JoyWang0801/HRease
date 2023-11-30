@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {Box, Button, Card, Container, Paper, styled, Typography} from '@mui/material';
 import pb from "../lib/pocketbase";
 import Grid from "@mui/material/Grid";
-import '../style/digital-clock.css'
+import '../components/styles/digital-clock.css'
 import Sidebar from "../components/Sidebar";
 import DigitalClock from "../components/DigitalClock";
 
-
+// Will need to resolve data fetching
 const BranchView =  () => {
     const [clockedIn, setClockedIn] = useState(false);
     const [clockInRecord, setClockInRecord] = useState();

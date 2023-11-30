@@ -1,6 +1,6 @@
 import React from 'react'
 import { Nav, NavContainer, NavLogo, NavItems, NavItem } from './styles/NavBar.styled'
-import navLogo from '../Hrease_logo.png'
+import navLogo from '../assets/Hrease_logo.png'
 
 function NavBar() {
     return (
