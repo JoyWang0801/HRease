@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, CardContent, Box, TextField, Grid, Typography } from '@mui/material';
 
-const ContactInformationForm = ({ formData }) => {
+const ContactInformationForm = ({ formData, dependentData }) => {
   const cardStyle = {
     borderRadius: "15px",
+    padding: "24px",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
   };
 
@@ -20,7 +21,7 @@ const ContactInformationForm = ({ formData }) => {
                 fullWidth
                 id="email"
                 label="Email"
-                value={formData.work_email || ''}
+                value={formData.workEmail || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -44,7 +45,7 @@ const ContactInformationForm = ({ formData }) => {
                 fullWidth
                 id="phone"
                 label="Phone"
-                value={formData.phone || ''}
+                value={formData.phoneNumber || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -73,7 +74,7 @@ const ContactInformationForm = ({ formData }) => {
                 fullWidth
                 id="relationship"
                 label="Relationship"
-                value={formData.relationship || ''}
+                value={dependentData.relationship || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -97,7 +98,7 @@ const ContactInformationForm = ({ formData }) => {
                 fullWidth
                 id="full_name"
                 label="Full Name"
-                value={formData.full_name || ''}
+                value={dependentData.fullName || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -121,7 +122,7 @@ const ContactInformationForm = ({ formData }) => {
                 fullWidth
                 id="emergency_email"
                 label="Email"
-                value={formData.emergency_email || ''}
+                value={dependentData.email || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -145,7 +146,7 @@ const ContactInformationForm = ({ formData }) => {
                 fullWidth
                 id="emergency_phone"
                 label="Phone"
-                value={formData.emergency_phone || ''}
+                value={dependentData.phoneNumber || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}

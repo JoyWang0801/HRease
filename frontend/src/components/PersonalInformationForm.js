@@ -4,6 +4,7 @@ import { Card, Box, TextField, Grid, Typography, CardContent } from '@mui/materi
 const PersonalInformationForm = ({ formData }) => {
   const cardStyle = {
     borderRadius: "15px",
+    padding: "24px",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
   };
 
@@ -20,7 +21,7 @@ const PersonalInformationForm = ({ formData }) => {
                 fullWidth
                 id="fullName"
                 label="Full Name"
-                value={`${formData.first_name || ''} ${formData.last_name || ''}`}
+                value={`${formData.firstName || ''} ${formData.lastName || ''}`}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -44,7 +45,7 @@ const PersonalInformationForm = ({ formData }) => {
                 fullWidth
                 id="address"
                 label="Address"
-                value={formData.home_address || ''}
+                value={formData.address || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -68,7 +69,7 @@ const PersonalInformationForm = ({ formData }) => {
                 fullWidth
                 id="dob"
                 label="Date of Birth"
-                value={formData.birthday || ''}
+                value={formData.dateOfBirth || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
@@ -164,7 +165,7 @@ const PersonalInformationForm = ({ formData }) => {
                 fullWidth
                 id="postalCode"
                 label="Postal Code"
-                value={formData.postal_code || ''}
+                value={formData.postalCode || ''}
                 InputLabelProps={{
                   readOnly: true,
                 }}
