@@ -1,12 +1,12 @@
 import React from 'react';
-import EmployeeView from './EmployeeView';
+import EmployeeView from './pages/EmployeeView';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import AddUserPage from "./AddUserPage";
-import LoginPage from "./LoginPage";
-import BranchView from "./BranchView";
-import PersonalView from "./PersonalView";
+import AddUserPage from "./pages/AddUserPage";
+import LoginPage from "./pages/LoginPage";
+import BranchView from "./pages/BranchView";
+import PersonalView from "./pages/PersonalView";
 
 // Create a theme instance.
 const theme = createTheme({
@@ -26,7 +26,7 @@ const theme = createTheme({
         background: {
             default: '#fff',
         },
-    },
+    }
 });
 
 function App() {

@@ -3,7 +3,7 @@ module.exports = {
     validateEmployee: (data) => {
         console.log(JSON.stringify(data.firstName));
         // Store dependent information in a separate collection called dependents
-        const dependentCollection = $app.dao().findCollectionByNameOrId("dependents");
+        const dependentCollection = $app.dao().findCollectionByNameOrId("dependent");
         const dependentRecord = new Record(dependentCollection);
         const dependentForm = new RecordUpsertForm($app, dependentRecord);
         dependentForm.loadData({
@@ -14,7 +14,7 @@ module.exports = {
         })
         dependentForm.submit()
 
-        const collection = $app.dao().findCollectionByNameOrId("employeeInfo")
+        const collection = $app.dao().findCollectionByNameOrId("employee")
         const record = new Record(collection)
         const form = new RecordUpsertForm($app, record)
         form.loadData({
