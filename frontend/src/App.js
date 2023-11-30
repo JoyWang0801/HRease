@@ -28,6 +28,9 @@ const theme = createTheme({
         },
     }
 });
+import GeneralBranchPage from './components/GeneralBranchPage';
+import GlobalStyles from './components/styles/Global';
+import DetailedBranchPage from './components/DetailedBranchPage';
 
 function App() {
   return (
@@ -45,6 +48,11 @@ function App() {
           </BrowserRouter>
         </ThemeProvider>
       </>
+		<div>
+			<GlobalStyles />
+			{/* <GeneralBranchPage /> */}
+			<DetailedBranchPage />
+		</div>
   );
 }
 
