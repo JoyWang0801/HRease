@@ -12,7 +12,8 @@ const EmployeeProfile = () => {
   const [employeeData, setEmployeeData] = useState('');
   const [profileImageUrl, setProfileImageUrl] = useState('');
   const [dependentData, setDependentData] = useState('');
-  const [branchData, setBranchData] = useState('');
+  const [branchData, setBranchData] = useState({ items: [] });
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,11 +27,11 @@ const EmployeeProfile = () => {
         const dependent = await pb.collection('dependent').getOne(record.dependent);
         setDependentData(dependent);
 
-        const branch = await pb.collection('branch').getList(1, 10, {
+        const branch = await pb.collection('branch').getList(1, 1, {
           filter: 'employees ~ "bj0kqv9203o0wdv"',
         });
-        console.log(branch);
         setBranchData(branch);
+        console.log(branchData.items[0].employmentType)
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -53,19 +54,19 @@ const EmployeeProfile = () => {
               <ProfileCard
                 first_name={employeeData.firstName || ''}
                 last_name={employeeData.lastName || ''}
-                role={employeeData.role || ''}
-                employment_type={employeeData.employment_type || ''}
+                role={branchData.items?.[0]?.role || ''}
+                employment_type={branchData.items?.[0]?.employmentType || ''}
                 imageUrl={profileImageUrl || ''}
               />
               {/* Forms container */}
-              <Box display="flex" justifyContent="space-between" p={2} sx={{ gap: '16px' }}>
-                <Box flex={1} sx={{ mr: 2, mb: 2 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
                   <PersonalInformationForm formData={employeeData} />
-                </Box>
-                <Box flex={1} sx={{ ml: 2, mt: 2 }}>
+                </Grid>
+                <Grid item xs={12} sm={6}>
                   <ContactInformationForm formData={employeeData} dependentData={dependentData} />
-                </Box>
-              </Box>
+                </Grid>
+              </Grid>
             </Box>
           </Grid>
         </Grid>

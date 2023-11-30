@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 let resultList = await pb.collection("branch").getList(1, 30, { expand: "employees" })
     .then((result) => {
         // success...
-        console.log('Result:', result.items);
+        // console.log('Result:', result.items);
         return result.items;
     }).catch((error) => {
         // error...

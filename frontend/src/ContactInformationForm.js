@@ -4,6 +4,7 @@ import { Card, CardContent, Box, TextField, Grid, Typography } from '@mui/materi
 const ContactInformationForm = ({ formData, dependentData }) => {
   const cardStyle = {
     borderRadius: "15px",
+    padding: "24px",
     boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)"
   };
 
