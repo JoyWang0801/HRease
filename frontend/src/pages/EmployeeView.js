@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Box, Grid, Avatar } from '@mui/material';
-import Sidebar from '../components/Sidebar';
-import ProfileCard from '../components/ProfileCard';
-import PersonalInformationForm from '../components/PersonalInformationForm';
-import ContactInformationForm from '../components/ContactInformationForm';
-import pb from "../lib/pocketbase";
+import Sidebar from './Sidebar';
+import ProfileCard from './ProfileCard';
+import PersonalInformationForm from './PersonalInformationForm';
+import ContactInformationForm from './ContactInformationForm';
+import pb from "./lib/pocketbase";
 
 pb.autoCancellation(false);
 
