@@ -20,7 +20,6 @@ const BranchView =  () => {
             setEmployeeList(await pb.collection("branch").getList(1, 30, {expand: "employees"})
                 .then((result) => {
                     // success...
-                    console.log('Result:', result.items);
                     return result.items;
                 }).catch((error) => {
                     // error...
