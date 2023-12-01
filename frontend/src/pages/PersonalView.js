@@ -4,6 +4,7 @@ import pb from "../lib/pocketbase";
 import Grid from "@mui/material/Grid";
 import '../components/styles/digital-clock.css'
 import Sidebar from "../components/Sidebar";
+import NavBar from "../components/NavBar";
 // import DigitalClock from "../components/DigitalClock";
 
 // Will need to resolve data fetching
@@ -54,7 +55,7 @@ const BranchView =  () => {
                 <Grid container spacing={3}>
                     {/* Sidebar */}
                     <Grid item xs={12} sm={4} md={3}>
-                        <Sidebar />
+                        <NavBar />
                     </Grid>
                     {/* Main content */}
                     <Grid item xs={12} sm={8} md={9} container spacing={3}>
