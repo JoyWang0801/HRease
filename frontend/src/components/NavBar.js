@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, NavContainer, NavLogo, NavItems, NavItem } from './styles/NavBar.styled'
+import { Nav, NavContainer, NavLogo, NavItems, NavItem, StyledLink } from './styles/NavBar.styled'
 import navLogo from '../assets/Hrease_logo.png'
 
 function NavBar() {
@@ -8,10 +8,10 @@ function NavBar() {
             <Nav>
                 <NavLogo src={navLogo}></NavLogo>
                 <NavItems>
-                    <NavItem>Dashboard</NavItem>
-                    <NavItem>Employee</NavItem>
-                    <NavItem>Branches</NavItem>
-                    <NavItem>Map</NavItem>
+                    <StyledLink to={"/personal"}>Dashboard</StyledLink>
+                    <StyledLink to={"/employee"}>Employee</StyledLink>
+                    <StyledLink to={"/detailBranch"}>Branches</StyledLink>
+                    <StyledLink to={"/"}>Map</StyledLink>
                 </NavItems>
             </Nav>
         </NavContainer>
