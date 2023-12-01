@@ -4,7 +4,7 @@ import pb from "../lib/pocketbase";
 import Grid from "@mui/material/Grid";
 import '../components/styles/digital-clock.css'
 import Sidebar from "../components/Sidebar";
-import DigitalClock from "../components/DigitalClock";
+// import DigitalClock from "../components/DigitalClock";
 
 // Will need to resolve data fetching
 const BranchView =  () => {
@@ -59,7 +59,7 @@ const BranchView =  () => {
                     {/* Main content */}
                     <Grid item xs={12} sm={8} md={9} container spacing={3}>
                         <Grid>
-                            <DigitalClock/>
+                            {/*<DigitalClock/>*/}
                             <Button variant="contained" onClick={punchClock}>
                                 {clockedIn === true ? "ClockOut" : "ClockIn"}
                             </Button>
