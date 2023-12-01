@@ -13,8 +13,8 @@ const cardStyle = {
 };
 
 const avatarStyle = {
-    width: '25vh',
-    height: '25vh',
+    width: '20vh',
+    height: '20vh',
     border:10,
     borderColor: 'primary.main'
 };
@@ -58,13 +58,7 @@ export const PersonalProfile = ({
     );
 };
 
-export const HeaderInfo = ({
-                               first_name,
-                               last_name,
-                               role,
-                               employment_type,
-                               imageUrl,
-                           }) => {
+export const HeaderInfo = () => {
     const [clockedIn, setClockedIn] = useState(false);
     const [clockInRecord, setClockInRecord] = useState();
     let key = localStorage.getItem('authToken');
@@ -111,7 +105,7 @@ export const HeaderInfo = ({
                 <DigitalClock/>
             </Grid>
             <Grid item xs>
-                <Button variant="contained" onClick={punchClock} sx={{width:'15vw', height:'15vw', borderRadius:'20px', fontSize:'3vw', textTransform:'none'}}>
+                <Button variant="contained" onClick={punchClock} sx={{width:'10vw', height:'10vw', borderRadius:'20px', fontSize:'2vw', textTransform:'none'}}>
                     {clockedIn === true ? "ClockOut" : "ClockIn"}
                 </Button>
             </Grid>

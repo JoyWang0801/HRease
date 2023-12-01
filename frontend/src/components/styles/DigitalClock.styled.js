@@ -14,5 +14,5 @@ export const DigitalClockStyle = styled.div`
 `;
 
 export const DisplayClock = styled.p`
-  font-size: 8vw;
+  font-size: 6vw;
 `;

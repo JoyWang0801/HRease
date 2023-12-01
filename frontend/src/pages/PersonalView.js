@@ -5,15 +5,50 @@ import Grid from "@mui/material/Grid";
 import '../components/styles/digital-clock.css'
 import Sidebar from "../components/Sidebar";
 import DigitalClock from "../components/DigitalClock";
+import NavBar from "../components/NavBar";
+import {HeaderInfo, PersonalProfile} from "../components/PersonalViewComponents";
 
 // Will need to resolve data fetching
-const BranchView =  () => {
+const PersonalView =  () => {
     const [clockedIn, setClockedIn] = useState(false);
     const [clockInRecord, setClockInRecord] = useState();
     let key = localStorage.getItem('authToken');
     let currentTime = new Date();
     console.log(pb.authStore.model.email)
 
+    const [employeeData, setEmployeeData] = useState("");
+    const [profileImageUrl, setProfileImageUrl] = useState("");
+    const [dependentData, setDependentData] = useState("");
+    const [branchData, setBranchData] = useState({ items: [] });
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const record = await pb
+                    .collection("employee")
+                    .getOne("bj0kqv9203o0wdv");
+                setEmployeeData(record);
+
+                const url = pb.files.getUrl(record, record.avatar);
+                setProfileImageUrl(url);
+
+                const dependent = await pb
+                    .collection("dependent")
+                    .getOne(record.dependent);
+                setDependentData(dependent);
+
+                const branch = await pb.collection("branch").getList(1, 1, {
+                    filter: 'employees ~ "bj0kqv9203o0wdv"',
+                });
+                setBranchData(branch);
+                console.log(branchData.items[0].employmentType);
+            } catch (error) {
+                console.error("Failed to fetch data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     async function punchClock() {
         let datetime = "Last Sync: " + currentTime.getDate() + "/"
@@ -49,40 +84,38 @@ const BranchView =  () => {
     }
 
     return (
-        <Container disableGutters maxWidth={false}>
-            {/*<Box mt={0} mb={4}>*/}
                 <Grid container spacing={3}>
                     {/* Sidebar */}
                     <Grid item xs={12} sm={4} md={3}>
-                        <Sidebar />
+                        <NavBar />
                     </Grid>
                     {/* Main content */}
-                    <Grid item xs={12} sm={8} md={9} container spacing={3}>
-                        <Grid>
-                            <DigitalClock/>
-                            <Button variant="contained" onClick={punchClock}>
-                                {clockedIn === true ? "ClockOut" : "ClockIn"}
-                            </Button>
+                    <Grid item xs={12} sm={8} md={9} container>
+                        <Grid item container alignItems="center" justifyContent="space-evenly" maxHeight="30vh">
+                            <PersonalProfile first_name={employeeData.firstName || ""}
+                                             last_name={employeeData.lastName || ""}
+                                             role={branchData.items?.[0]?.role || ""}
+                                             employment_type={branchData.items?.[0]?.employmentType || ""}
+                                             imageUrl={profileImageUrl || ""}
+                            />
+                            <HeaderInfo/>
                         </Grid>
-                        <Grid sx={{
-                            width: "100%",
-                            height: "30vh",
-                            borderRadius: 5,
-                            bgcolor: 'primary.main',
-
-                            // '&:hover': {
-                            //     bgcolor: 'primary.dark',
-                            // },
-                        }}>
+                        {/*<Grid sx={{*/}
+                        {/*    width: "100%",*/}
+                        {/*    height: "30vh",*/}
+                        {/*    borderRadius: 5,*/}
+                        {/*    bgcolor: 'primary.main',*/}
+                        {/*}}>*/}
+                        {/*</Grid>*/}
+                        <Grid item>
+                            <p>hi</p>
                         </Grid>
                     </Grid>
                 </Grid>
-            {/*</Box>*/}
-        </Container>
     );
 };
 
 // SELECT columns at somewhere else for displaying necessary information only
 // Having a separate collections to handle attendance ( will also need to think about branch
 
-export default BranchView;
+export default PersonalView;
