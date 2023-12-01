@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import BranchView from "../pages/PersonalView";
+import {DigitalClockStyle, DisplayClock} from "./styles/DigitalClock.styled";
 
 const DigitalClock = () => {
     const [currentTime, setTime] = useState({
@@ -22,7 +22,11 @@ const DigitalClock = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    return  <p>{`${currentTime.hours}:${currentTime.minutes}:${currentTime.seconds}`}</p>;
+    return(
+        <DigitalClockStyle>
+            <DisplayClock>{`${currentTime.hours}:${currentTime.minutes}:${currentTime.seconds}`}</DisplayClock>
+        </DigitalClockStyle>
+    );
 }
 
 export default DigitalClock;
