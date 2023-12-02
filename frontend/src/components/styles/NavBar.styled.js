@@ -37,6 +37,8 @@ export const NavItem = styled.div`
     font-weight: 500;
     transition: 0.3s ease-in-out;
     padding: 10px;
+    position: absolute;
+    bottom: 0px;
 
     &:hover {
         color: var(--hre-green);
@@ -62,3 +64,20 @@ export const StyledLink = styled(NavLink)`
     color: var(--hre-green);
   }
 `;
+
+export const LogoutBtn = styled.button`
+  font-size: 26px;
+  font-weight: 500;
+  transition: 0.3s ease-in-out;
+  padding: 10px;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    cursor: pointer;
+    background-color: lightgrey;
+    border-radius: 10px;
+  }
+  &.active {
+    color: var(--hre-green);
+  }
+`

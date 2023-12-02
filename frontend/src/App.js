@@ -9,6 +9,8 @@ import PersonalView from "./pages/PersonalView";
 import GeneralBranchPage from './pages/GeneralBranchPage';
 import GlobalStyles from './components/styles/Global';
 import DetailedBranchPage from './pages/DetailedBranchPage';
+import MapPage from './pages/MapPage';
+import NavBar from "./components/NavBar";
 
 // Create a theme instance.
 const theme = createTheme({
@@ -39,6 +41,8 @@ function App() {
           <CssBaseline />
           <BrowserRouter>
           <GlobalStyles />
+              {/* Will move navbar to here*/}
+            {/*<NavBar/>*/}
             <Routes>
                 <Route path="/addUser" element={<AddUserPage />} />
                 {/*<Route path="/branch" element={<BranchView/>}/>*/}
@@ -46,6 +50,7 @@ function App() {
                 <Route path="/generalBranch" element={<GeneralBranchPage />}/>
                 <Route path="/personal" element={<PersonalView/>}/>
                 <Route path="/employee" element={<EmployeeView/>}/>
+                <Route path="/map" element={<MapPage/>}/>
                 <Route path="/" element={<LoginPage />} />
 
             </Routes>

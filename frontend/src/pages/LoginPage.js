@@ -17,6 +17,8 @@ const LoginPage = () => {
             console.log('User logged in', user);
             // You might want to save the user token to localStorage and redirect to the dashboard, for example:
             localStorage.setItem('authToken', user.token);
+            localStorage.setItem('userRecord', JSON.stringify(user.record));
+            console.log(`id: ${user.id}`);
             // Redirect to dashboard or another route depending on your application's flow
 
         } catch (err) {

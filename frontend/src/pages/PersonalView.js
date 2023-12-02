@@ -24,9 +24,11 @@ const PersonalView =  () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                let userEmployeeId = JSON.parse(localStorage.getItem("userRecord")).employee;
+
                 const record = await pb
                     .collection("employee")
-                    .getOne("bj0kqv9203o0wdv");
+                    .getOne(userEmployeeId);
                 setEmployeeData(record);
 
                 const url = pb.files.getUrl(record, record.avatar);
@@ -50,38 +52,38 @@ const PersonalView =  () => {
         fetchData();
     }, []);
 
-    async function punchClock() {
-        let datetime = "Last Sync: " + currentTime.getDate() + "/"
-            + (currentTime.getMonth() + 1) + "/"
-            + currentTime.getFullYear() + " @ "
-            + currentTime.getHours() + ":"
-            + currentTime.getMinutes() + ":"
-            + currentTime.getSeconds();
+    // async function punchClock() {
+    //     let datetime = "Last Sync: " + currentTime.getDate() + "/"
+    //         + (currentTime.getMonth() + 1) + "/"
+    //         + currentTime.getFullYear() + " @ "
+    //         + currentTime.getHours() + ":"
+    //         + currentTime.getMinutes() + ":"
+    //         + currentTime.getSeconds();
 
-        const employeeRecord = await pb.collection('employee').getFirstListItem(`workEmail="${pb.authStore.model.email}"`);
+    //     const employeeRecord = await pb.collection('employee').getFirstListItem(`workEmail="${pb.authStore.model.email}"`);
 
-       if(!clockedIn)
-       {
-           const fakeDate = new Date(2012, 5, 1,2,3,4);
-           const data = {
-               "clockIn": currentTime,
-               "employee": employeeRecord.id
-           };
-           let fmrDate = new Intl.DateTimeFormat().format(currentTime);
-           console.log(`Date: ${currentTime}, UTC: ${currentTime.toUTCString()}, fmtDate: ${fmrDate}`);
-           setClockInRecord(await pb.collection('attendance').create(data));
-       }
-       else
-       {
-           const fakeDate = new Date(2022, 5, 1,3,4,5);
-           const updateData = {
-               "clockOut": currentTime
-           };
-           const record = await pb.collection('attendance').update(clockInRecord.id, updateData);
-       }
+    //    if(!clockedIn)
+    //    {
+    //        const fakeDate = new Date(2012, 5, 1,2,3,4);
+    //        const data = {
+    //            "clockIn": currentTime,
+    //            "employee": employeeRecord.id
+    //        };
+    //        let fmrDate = new Intl.DateTimeFormat().format(currentTime);
+    //        console.log(`Date: ${currentTime}, UTC: ${currentTime.toUTCString()}, fmtDate: ${fmrDate}`);
+    //        setClockInRecord(await pb.collection('attendance').create(data));
+    //    }
+    //    else
+    //    {
+    //        const fakeDate = new Date(2022, 5, 1,3,4,5);
+    //        const updateData = {
+    //            "clockOut": currentTime
+    //        };
+    //        const record = await pb.collection('attendance').update(clockInRecord.id, updateData);
+    //    }
 
-        setClockedIn(!clockedIn);
-    }
+    //     setClockedIn(!clockedIn);
+    // }
 
     return (
                 <Grid container spacing={3}>
@@ -90,8 +92,8 @@ const PersonalView =  () => {
                         <NavBar />
                     </Grid>
                     {/* Main content */}
-                    <Grid item xs={12} sm={8} md={9} container>
-                        <Grid item container alignItems="center" justifyContent="space-evenly" maxHeight="30vh">
+                    <Grid item xs={12} sm={8} md={9} container spacing={3} paddingRight={"2vw"}>
+                        <Grid item container alignItems="center" maxHeight="30vh" marginTop={"2vh"} >
                             <PersonalProfile first_name={employeeData.firstName || ""}
                                              last_name={employeeData.lastName || ""}
                                              role={branchData.items?.[0]?.role || ""}
@@ -100,15 +102,43 @@ const PersonalView =  () => {
                             />
                             <HeaderInfo/>
                         </Grid>
-                        {/*<Grid sx={{*/}
-                        {/*    width: "100%",*/}
-                        {/*    height: "30vh",*/}
-                        {/*    borderRadius: 5,*/}
-                        {/*    bgcolor: 'primary.main',*/}
-                        {/*}}>*/}
-                        {/*</Grid>*/}
-                        <Grid item>
-                            <p>hi</p>
+                        <Grid item container sx={{mt:'2vh', borderRadius: 5, bgcolor: 'primary.main'}}>
+                            <Grid item xs={12} sm={6} md={3} container alignItems="center" justifyContent="center">
+                                <DigitalClock/>
+                                <Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button><Button variant="contained" size="large">
+                                    Request Time Off
+                                </Button>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>

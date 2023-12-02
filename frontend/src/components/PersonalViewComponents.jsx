@@ -13,16 +13,9 @@ const cardStyle = {
 };
 
 const avatarStyle = {
-    width: '20vh',
-    height: '20vh',
-    border:10,
-    borderColor: 'primary.main'
+    width: 200,
+    height: 200
 };
-
-// const Role = ({role, type}) =>
-// {
-//     return();
-// }
 
 export const PersonalProfile = ({
                          first_name,
@@ -34,25 +27,27 @@ export const PersonalProfile = ({
 
     return (
         <>
-            <Grid item xs>
-                <Avatar
-                    style={avatarStyle}
-                    src={imageUrl}
-                    alt={`${first_name} ${last_name}`}
-                />
-            </Grid>
-            <Grid item xs container direction="column" justifyContent="space-evenly" alignItems="flex-start">
-                <Typography variant="h4" sx={{ fontSize: 30, fontWeight: "bold" }}>
-                    {`${first_name}`}
-                </Typography>
-                <Box>
-                    <Typography variant="subtitle1" component="span" sx={{ fontWeight: 'bold', display: 'inline' }}>
-                        {role} &#x2022;
+            <Grid item xs container alignItems="center" >
+                <Grid item xs>
+                    <Avatar
+                        style={avatarStyle}
+                        src={imageUrl}
+                        alt={`${first_name} ${last_name}`}
+                    />
+                </Grid>
+                <Grid item xs>
+                    <Typography variant="h4" sx={{ fontSize: 30, fontWeight: "bold" }}>
+                        {`${first_name}`}
                     </Typography>
-                    <Typography variant="subtitle1" component="span" sx={{ display: 'inline', marginLeft: 1 }}>
-                        {employment_type}
-                    </Typography>
-                </Box>
+                    <Box>
+                        <Typography variant="subtitle1" component="span" sx={{ fontWeight: 'bold', display: 'inline' }}>
+                            {role} &#x2022;
+                        </Typography>
+                        <Typography variant="subtitle1" component="span" sx={{ display: 'inline', marginLeft: 1 }}>
+                            {employment_type}
+                        </Typography>
+                    </Box>
+                </Grid>
             </Grid>
         </>
     );
@@ -101,11 +96,9 @@ export const HeaderInfo = () => {
 
     return(
         <>
-            <Grid item xs>
+            <Grid item xs container justifyContent='flex-end'>
                 <DigitalClock/>
-            </Grid>
-            <Grid item xs>
-                <Button variant="contained" onClick={punchClock} sx={{width:'10vw', height:'10vw', borderRadius:'20px', fontSize:'2vw', textTransform:'none'}}>
+                <Button variant="contained" onClick={punchClock} sx={{ml:'10px', width:'10vw', height:'10vw', borderRadius:'20px', fontSize:'2vw', textTransform:'none'}}>
                     {clockedIn === true ? "ClockOut" : "ClockIn"}
                 </Button>
             </Grid>
