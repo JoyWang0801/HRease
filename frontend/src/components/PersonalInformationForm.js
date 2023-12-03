@@ -15,7 +15,7 @@ const PersonalInformationForm = ({ formData }) => {
         <CardHeader>Personal Information</CardHeader>
         <FullHolder>
           <Legend>Name</Legend>
-          John Adams
+          {formData.firstName} {formData.lastName}
           {/* {formData.firstName} {formData.lastName} */}
         </FullHolder>
         <FullHolder>
