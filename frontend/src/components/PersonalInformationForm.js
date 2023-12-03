@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Box, TextField, Grid, Typography, CardContent } from '@mui/material';
-import { CardHeader, FourGrid, FullHolder, HalfHolder, InformationContainer, InformationMatrix } from './styles/InformationCard';
+import { CardHeader, FourGrid, FullHolder, HalfHolder, InformationContainer, InformationMatrix, Legend } from './styles/InformationCard';
 
 const PersonalInformationForm = ({ formData }) => {
   // const cardStyle = {
@@ -13,19 +13,37 @@ const PersonalInformationForm = ({ formData }) => {
     <InformationContainer>
       <InformationMatrix>
         <CardHeader>Personal Information</CardHeader>
-        {/* <FullHolder>{formData.firstName} {formData.lastName}</FullHolder> */}
-        <FullHolder>John Adams</FullHolder>
-        {/* <FullHolder>{formData.address}</FullHolder> */}
-        <FullHolder>123, Cornelia Street NE, T2T 1K8</FullHolder>
+        <FullHolder>
+          <Legend>Name</Legend>
+          John Adams
+          {/* {formData.firstName} {formData.lastName} */}
+        </FullHolder>
+        <FullHolder>
+          <Legend>Address</Legend>
+          123, Cornelia Street NE, T2T 1K8
+          {/* {formData.address} */}
+        </FullHolder>
         <FourGrid>
-          {/* <HalfHolder>{formData.city}</HalfHolder> */}
-          <HalfHolder>Calgary</HalfHolder>
-          {/* <HalfHolder>{formData.province}</HalfHolder> */}
-          <HalfHolder>Alberta</HalfHolder>
-          {/* <HalfHolder>{formData.dateOfBirth}</HalfHolder> */}
-          <HalfHolder>01-23-1997</HalfHolder>
-          {/* <HalfHolder>{formData.gender}</HalfHolder> */}
-          <HalfHolder>Male</HalfHolder>
+          <HalfHolder>
+            <Legend>City</Legend>
+            Calgary
+            {/* {formData.city} */}
+          </HalfHolder>
+          <HalfHolder>
+            <Legend>Province</Legend>
+            Alberta
+            {/* {formData.province} */}
+          </HalfHolder>
+          <HalfHolder>
+            <Legend>DOB</Legend>
+            01-23-1997
+            {/* {formData.dateOfBirth} */}
+          </HalfHolder>
+          <HalfHolder>
+            <Legend>Gender</Legend>
+            Male
+            {/* {formData.gender} */}
+          </HalfHolder>
         </FourGrid>
       </InformationMatrix>
     </InformationContainer>

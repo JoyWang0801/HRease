@@ -30,9 +30,7 @@ export const FourGrid = styled.div`
     gap: 30px 0;
 `
 
-export const FullHolder = styled.div`
-    display: flex;
-    align-items: center;
+export const FullHolder = styled.fieldset`
     width: 100%;
     height: 60px;
     border: 10px;
@@ -42,7 +40,7 @@ export const FullHolder = styled.div`
     color: var(--dark-grey);
 `
 
-export const HalfHolder = styled.div`
+export const HalfHolder = styled.fieldset`
     display: flex;
     align-items: center;
     width: 48%;
@@ -52,4 +50,9 @@ export const HalfHolder = styled.div`
     border: 2px solid var(--hre-green);
     padding-left: 20px;
     color: var(--dark-grey);
+`
+
+export const Legend = styled.legend`
+    font-size: 14px;
+    color: var(--hre-green);
 `
