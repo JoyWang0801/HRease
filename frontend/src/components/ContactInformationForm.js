@@ -15,23 +15,23 @@ const ContactInformationForm = ({ formData, dependentData }) => {
         <CardHeader>Contact Information</CardHeader>
         <FullHolder>
           <Legend>Email</Legend>
-          johnadams@gmail.com
+          {formData.workEmail}
           {/* {formData.workEmail} */}
         </FullHolder>
         <FullHolder>
           <Legend>Phone Number</Legend>
-          123-123-1234
+          {formData.phoneNumber}
           {/* {formData.phoneNumber} */}
         </FullHolder>
         <CardHeader>Emergency Contact</CardHeader>
         <FullHolder>
           <Legend>Dependant Name</Legend>
-          Jane Adams
+          {dependentData.fullName}
           {/* {dependentData.fullName} */}
         </FullHolder>
         <FullHolder>
           <Legend>Dependent Phone Number</Legend>
-          123-321-4321
+          {dependentData.phoneNumber}
           {/* {dependentData.phoneNumber} */}
         </FullHolder>
       </InformationMatrix>

@@ -56,12 +56,12 @@ const EmployeeProfile = () => {
         <GreenHeaderContainer>
           <EmployeeInformationContainer>
             {/* <ProfilePicture src={profileImageUrl}></ProfilePicture> */}
-            <ProfilePicture src={profilePic}></ProfilePicture>
+            <ProfilePicture src={profileImageUrl}></ProfilePicture>
             <EmployeeHeaderContainer>
               {/* <EmployeeHeader>{employeeData.firstName} {employeeData.lastName}</EmployeeHeader> */} 
-              <EmployeeHeader>John Adams</EmployeeHeader>
+              <EmployeeHeader>{employeeData.firstName} {employeeData.lastName}</EmployeeHeader>
               {/* <EmployeePosition>{branchData.items?.[0]?.role} • {branchData.items?.[0]?.employmentType}</EmployeePosition> */}
-              <EmployeePosition>Manager • Full-time</EmployeePosition>
+              <EmployeePosition>{branchData.items?.[0]?.role} • {branchData.items?.[0]?.employmentType}</EmployeePosition>
             </EmployeeHeaderContainer>
           </EmployeeInformationContainer>
         </GreenHeaderContainer>

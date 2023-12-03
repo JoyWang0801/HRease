@@ -20,28 +20,28 @@ const PersonalInformationForm = ({ formData }) => {
         </FullHolder>
         <FullHolder>
           <Legend>Address</Legend>
-          123, Cornelia Street NE, T2T 1K8
+          {formData.address}
           {/* {formData.address} */}
         </FullHolder>
         <FourGrid>
           <HalfHolder>
             <Legend>City</Legend>
-            Calgary
+            {formData.city}
             {/* {formData.city} */}
           </HalfHolder>
           <HalfHolder>
             <Legend>Province</Legend>
-            Alberta
+            {formData.province}
             {/* {formData.province} */}
           </HalfHolder>
           <HalfHolder>
             <Legend>DOB</Legend>
-            01-23-1997
+            {formData.dateOfBirth}
             {/* {formData.dateOfBirth} */}
           </HalfHolder>
           <HalfHolder>
             <Legend>Gender</Legend>
-            Male
+            {formData.gender}
             {/* {formData.gender} */}
           </HalfHolder>
         </FourGrid>
