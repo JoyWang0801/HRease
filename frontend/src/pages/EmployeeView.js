@@ -66,8 +66,8 @@ const EmployeeProfile = () => {
           </EmployeeInformationContainer>
         </GreenHeaderContainer>
         <InformationWrapper>
-          <PersonalInformationForm />
-          <ContactInformationForm />
+          <PersonalInformationForm formData={employeeData}/>
+          <ContactInformationForm formData={employeeData} dependentData={dependentData}/>
         </InformationWrapper>
       </MainContentContainer>
     </PageContainer>
