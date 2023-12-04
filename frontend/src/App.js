@@ -5,8 +5,10 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import AddUserPage from "./pages/AddUserPage";
 import LoginPage from "./pages/LoginPage";
-import BranchView from "./pages/BranchView";
 import PersonalView from "./pages/PersonalView";
+import GeneralBranchPage from './pages/GeneralBranchPage';
+import GlobalStyles from './components/styles/Global';
+import DetailedBranchPage from './pages/DetailedBranchPage';
 
 // Create a theme instance.
 const theme = createTheme({
@@ -29,22 +31,28 @@ const theme = createTheme({
     }
 });
 
+
 function App() {
   return (
       <>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <BrowserRouter>
+          <GlobalStyles />
             <Routes>
-                <Route path="/" element={<LoginPage />} />
                 <Route path="/addUser" element={<AddUserPage />} />
-                <Route path="/branch" element={<BranchView/>}/>
+                {/*<Route path="/branch" element={<BranchView/>}/>*/}
+                <Route path="/detailBranch" element={<DetailedBranchPage />}/>
+                <Route path="/generalBranch" element={<GeneralBranchPage />}/>
                 <Route path="/personal" element={<PersonalView/>}/>
                 <Route path="/employee" element={<EmployeeView/>}/>
+                <Route path="/" element={<LoginPage />} />
+
             </Routes>
           </BrowserRouter>
         </ThemeProvider>
       </>
+
   );
 }
 
