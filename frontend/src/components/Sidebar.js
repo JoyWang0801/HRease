@@ -12,6 +12,10 @@ const Sidebar = () => {
     setSelectedIndex(index);
     console.log(index)
     console.log(selectedIndex)
+    if (index === 3){
+      localStorage.setItem('isLoggedIn', false);
+      navigate('/', { replace: true }); // Navigate to the home page
+    }
   };
 
   useEffect(() => {

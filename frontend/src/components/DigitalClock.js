@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import BranchView from "../pages/PersonalView";
+import PersonalView from "../pages/PersonalView";
 
 const DigitalClock = () => {
     const [currentTime, setTime] = useState({
