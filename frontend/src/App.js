@@ -10,6 +10,7 @@ import GeneralBranchPage from './pages/GeneralBranchPage';
 import GlobalStyles from './components/styles/Global';
 import DetailedBranchPage from './pages/DetailedBranchPage';
 import { useEffect, useState } from 'react';
+import MapViewPage from './pages/MapViewPage';
 
 // Create a theme instance.
 const theme = createTheme({
@@ -34,7 +35,8 @@ const theme = createTheme({
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'false');
+  const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+  const [isLoggedIn, setIsLoggedIn] = useState(storedIsLoggedIn !== null ? storedIsLoggedIn === 'true' : false);
   useEffect(() => {
     localStorage.setItem('isLoggedIn', isLoggedIn);
   }, [isLoggedIn]);
@@ -51,6 +53,7 @@ function App() {
             <Route path="/generalBranch" element={<GeneralBranchPage />} />
             <Route path="/personal" element={<PersonalView />} />
             <Route path="/employee" element={<EmployeeView />} />
+            <Route path="/map" element={<MapViewPage />} />
           </Routes>
         </GlobalStyles>
       </BrowserRouter>
