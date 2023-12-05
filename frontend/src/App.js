@@ -41,6 +41,7 @@ function App() {
     if (storedIsLoggedIn !== null) {
       return storedIsLoggedIn === 'true';
     } else {
+      const isLoggedIn = false;
       localStorage.setItem('isLoggedIn', isLoggedIn.toString());
       return isLoggedIn;
     }
