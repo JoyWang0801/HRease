@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { Button, TextField, Container, Typography } from '@mui/material';
 import pb from "../lib/pocketbase";
+import { useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [isLoggedIn, setLoggedIn] = useState(pb.authStore.isValid);
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            // Perform the login via PocketBase SDK
             let user = await pb.collection('users').authWithPassword(email, password);
-            setLoggedIn(true);
+            setIsLoggedIn(true);
             console.log('User logged in', user);
-            // You might want to save the user token to localStorage and redirect to the dashboard, for example:
             localStorage.setItem('authToken', user.token);
-            // Redirect to dashboard or another route depending on your application's flow
 
         } catch (err) {
             console.error('Failed to login:', err);
@@ -28,25 +26,7 @@ const LoginPage = () => {
 
     if(isLoggedIn)
     {
-        return (
-            <>
-                <h1>Logged In: {pb.authStore.model.email}</h1>
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="outlined"
-                    color="primary"
-                    style={{ margin: '24px 0 16px' }}
-                    onClick={()=>{
-                        pb.authStore.clear();
-                        console.log("authStore cleared")
-                        setLoggedIn(false);
-                    }}
-                >
-                    Logout
-                </Button>
-            </>
-        )
+        navigate('/personal')
     }
 
     return (
@@ -97,5 +77,3 @@ const LoginPage = () => {
         </Container>
     );
 };
-
-export default LoginPage;
