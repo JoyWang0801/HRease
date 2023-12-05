@@ -3,10 +3,12 @@ import { Button, TextField, Container, Typography } from '@mui/material';
 import pb from "../lib/pocketbase";
 import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
+
+export default function LoginPage({ setIsLoggedIn, isLoggedIn }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [userID, setUserID] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -14,9 +16,9 @@ export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
         try {
             let user = await pb.collection('users').authWithPassword(email, password);
             setIsLoggedIn(true);
-            console.log('User logged in', user);
-            localStorage.setItem('authToken', user.token);
 
+            setUserID(user.record.id);
+            localStorage.setItem('authToken', user.token);
         } catch (err) {
             console.error('Failed to login:', err);
             setError(err.message);
@@ -24,9 +26,9 @@ export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
 
     };
 
-    if(isLoggedIn)
-    {
+    if (isLoggedIn) {
         navigate('/personal')
+        localStorage.setItem('userID', userID);
     }
 
     return (
