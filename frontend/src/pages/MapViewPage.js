@@ -35,11 +35,11 @@ export default function MapViewPage() {
             {/*<Box mt={0} mb={4}>*/}
             <Grid container spacing={3}>
                 {/* Sidebar */}
-                <Grid item xs={12} sm={4} md={3}>
+                <Grid item xs={12} sm={4} md={2.6}>
                     <NavBar />
                 </Grid>
                 {/* Main content */}
-                <Grid item xs={12} sm={8} md={9} container spacing={3}>
+                <Grid item xs={12} sm={8} md={9.4} container spacing={3}>
                     <APIProvider apiKey={process.env.REACT_APP_MAP_TOKEN}>
                         <div style={{ height: '100vh', width: '100%' }}>
                             <Map zoom={12.5} center={position} mapId={process.env.REACT_APP_MAP_ID}>
