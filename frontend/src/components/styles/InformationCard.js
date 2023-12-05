@@ -4,10 +4,14 @@ export const InformationContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 45%;
+    width: 46%;
     border-radius: 20px;
     box-shadow: 0px 8px 15px 1px rgba(0, 0, 0, 0.25);
 
+    @media (max-width: 768px) {
+        width: 90%;
+        height: 500px;
+    }
 `
 
 export const CardHeader = styled.h1`

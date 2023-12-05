@@ -32,7 +32,49 @@ const branch3 = {
     size: 61
 }
 
-let allBranches = [branch1, branch2, branch3];
+const branch4 = {
+    name: "Varsity",
+    city: "Calgary",
+    province: "Alberta",
+    country: "Canada",
+    size: 61
+}
+const branch5 = {
+    name: "Varsity",
+    city: "Calgary",
+    province: "Alberta",
+    country: "Canada",
+    size: 61
+}
+const branch6 = {
+    name: "Varsity",
+    city: "Calgary",
+    province: "Alberta",
+    country: "Canada",
+    size: 61
+}
+const branch7 = {
+    name: "Varsity",
+    city: "Calgary",
+    province: "Alberta",
+    country: "Canada",
+    size: 61
+}
+const branch8 = {
+    name: "Varsity",
+    city: "Calgary",
+    province: "Alberta",
+    country: "Canada",
+    size: 61
+}
+const branch9 = {
+    name: "Varsity",
+    city: "Calgary",
+    province: "Alberta",
+    country: "Canada",
+    size: 61
+}
+let allBranches = [branch1, branch2, branch3, branch4, branch5, branch6, branch7, branch8, branch9];
 
 function GeneralBranchPage() {
     const [filteredBranches, setFilteredBranches] = useState(allBranches);

@@ -21,6 +21,7 @@ export const BranchInformationWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 90px;
+    gap: 15px;
 
     @media (max-width: 768px) {
         gap: 30px;
@@ -33,13 +34,10 @@ export const HeaderMatrix = styled.div`
     align-items: center;
     gap: 30px;
     height: 40px;
-
-    @media (max-width: 768px) {
-    }
 `
 
 export const BranchHeader = styled.h1`
-    font-size: 34px;
+    font-size: clamp(26px, 3vw, 34px);
     color: var(--white);
 
     @media (max-width: 768px) {
@@ -50,8 +48,8 @@ export const BranchHeader = styled.h1`
 
 export const TagCounter = styled.div`
     padding: 0 20px;
-    line-height: 30px;
-    height: 30px;
+    line-height: clamp(26px, 2vw, 30px);
+    height: clamp(26px, 2vw, 30px);
     border-radius: 10px;
     font-size: 14px;
     background-color: var(--hre-light-green);

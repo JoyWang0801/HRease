@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import {NavLink} from "react-router-dom";
 
 export const NavContainer = styled.div`
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,6 +12,7 @@ export const NavContainer = styled.div`
     box-shadow: 4px 0px 20px 1px rgba(0, 0, 0, 0.25);
 
     @media (max-width: 768px) {
+      position: relative;
       width: 100vw;
       height: 7vh;
     }
@@ -54,12 +56,10 @@ export const NavItems = styled.div`
 export const NavItem = styled.div`
     font-weight: 500;
     transition: 0.3s ease-in-out;
-    /* padding: 10px; */
 
     &:hover {
         color: var(--hre-green);
         cursor: pointer;
-        /* background-color: lightgrey; */
         border-radius: 10px; 
     }
 
@@ -71,7 +71,7 @@ export const NavItem = styled.div`
 `
 
 export const StyledLink = styled(NavLink)`
-  font-size: clamp(12px, 3vw, 26px);
+  font-size: clamp(16px, 2vw, 26px);
   font-weight: 500;
   transition: 0.3s ease-in-out;
   padding: 10px;

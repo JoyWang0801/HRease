@@ -12,6 +12,7 @@ export const PageContainer = styled.div`
 `
 
 export const MainContentContainer = styled.div`
+    margin-left: 20vw;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -20,6 +21,8 @@ export const MainContentContainer = styled.div`
     @media (max-width: 768px) {
         height: 93vh;
         width: 100vw;
+        margin-left: 0;
+        overflow: scroll;
     }
 `
 
@@ -28,7 +31,7 @@ export const GreenHeaderContainer = styled.div`
     align-items: flex-end;
     justify-content: center;
     width: 90%;
-    height: 35%;
+    height: 250px;
     border-radius: 0 0 30px 0;
     background-color: var(--hre-green);
 
@@ -36,7 +39,7 @@ export const GreenHeaderContainer = styled.div`
         width: 100vw;
         height: 30%;
         border-radius: 0 0 0 0;
-        background-color: var(--white);
+     background-color: var(--white);
     }
 `
 
@@ -68,6 +71,8 @@ export const ContentWrapper = styled.div`
 
 export const CardContainer = styled.div`
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 30px;
     justify-content: space-between;
 
     @media (max-width: 768px) {

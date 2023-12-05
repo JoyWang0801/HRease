@@ -37,9 +37,16 @@ const emp3 = {
     picture: johnPic
 }
 
+const branch1 = {
+    name: "Brentwood",
+    city: "Calgary",
+    province: "AB",
+    size: 61
+}
+
 const allEmployees = [emp1, emp3]
 
-function DetailedBranchPage() {
+function DetailedBranchPage({branch}) {
 
     const [filteredNames, setFilteredNames] = useState(allEmployees);
     const [letterFilter, setLetterFilter] = useState("");
@@ -99,7 +106,7 @@ function DetailedBranchPage() {
                         </ButtonContainer>
                         <BranchInformationWrapper>
                             <HeaderMatrix>
-                                <BranchHeader>Varsity Drive • Calgary, AB</BranchHeader>
+                                <BranchHeader>{branch1.name} • {branch1.city}, {branch1.province}</BranchHeader>
                                 {!isMobile ? <TagCounter>{allEmployees.length} Employees</TagCounter> : null}
                             </HeaderMatrix>
                             {!isMobile ? <AlphabetBar onLetterClick={handleLetterClick} /> : <SearchBar handleSearchChange={handleSearchChange}/>}

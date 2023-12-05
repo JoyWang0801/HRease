@@ -3,7 +3,7 @@ import { BranchHeaderContainer } from './BranchGlobals'
 import { CardContainer } from './Containers'
 
 export const GeneralBranchHeaderContainer = styled(BranchHeaderContainer)`
-    height: 90px;
+    height: 100px;
 `
 
 export const BranchCardContainer = styled(CardContainer)`
