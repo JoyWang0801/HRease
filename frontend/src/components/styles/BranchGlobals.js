@@ -8,6 +8,12 @@ export const BranchHeaderContainer = styled.div`
     height: 70%;
     margin-bottom: 40px;
     /* background-color: green; */
+    gap: 50px;
+
+    @media(max-width: 768px) {
+        width: 90%;
+
+    }
 `
 
 export const BranchInformationWrapper = styled.div`
@@ -15,6 +21,10 @@ export const BranchInformationWrapper = styled.div`
     flex-direction: column;
     justify-content: space-between;
     height: 90px;
+
+    @media (max-width: 768px) {
+        gap: 30px;
+    }
     /* background-color: pink; */
 `
 
@@ -23,12 +33,19 @@ export const HeaderMatrix = styled.div`
     align-items: center;
     gap: 30px;
     height: 40px;
-    /* background-color: blue; */
+
+    @media (max-width: 768px) {
+    }
 `
 
 export const BranchHeader = styled.h1`
     font-size: 34px;
     color: var(--white);
+
+    @media (max-width: 768px) {
+        color: black;
+        font-size: clamp(12px, 6vw, 30px);
+    }
 `
 
 export const TagCounter = styled.div`
@@ -39,4 +56,10 @@ export const TagCounter = styled.div`
     font-size: 14px;
     background-color: var(--hre-light-green);
     color: var(--hre-dark-green);
+
+    @media (max-width: 768px) {
+        padding: 0;
+        background-color: white;
+        color: var(--hre-dark-green);
+    }
 `

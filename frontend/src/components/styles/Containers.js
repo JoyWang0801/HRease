@@ -2,6 +2,13 @@ import styled from 'styled-components'
 
 export const PageContainer = styled.div`
     display: flex;
+
+    @media (max-width: 768px) {
+        height: 100vh;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        overflow: hidden;
+    }
 `
 
 export const MainContentContainer = styled.div`
@@ -9,6 +16,11 @@ export const MainContentContainer = styled.div`
     flex-direction: column;
     gap: 30px;
     width: 85vw;
+
+    @media (max-width: 768px) {
+        height: 93vh;
+        width: 100vw;
+    }
 `
 
 export const GreenHeaderContainer = styled.div`
@@ -19,6 +31,19 @@ export const GreenHeaderContainer = styled.div`
     height: 35%;
     border-radius: 0 0 30px 0;
     background-color: var(--hre-green);
+
+    @media (max-width: 768px) {
+        width: 100vw;
+        height: 30%;
+        border-radius: 0 0 0 0;
+        background-color: var(--white);
+    }
+`
+
+export const OuterContentContainer = styled.div`
+    display: flex;
+    height: 70%;
+    justify-content: space-between;
 `
 
 export const ContentContainer = styled.div`
@@ -26,6 +51,11 @@ export const ContentContainer = styled.div`
     flex-direction: column;
     gap: 35px;
     width: 90%;
+
+    @media (max-width: 768px) {
+        width: 90%;
+        gap: 20px;
+    }
 `
 
 export const ContentWrapper = styled.div`
@@ -39,4 +69,9 @@ export const ContentWrapper = styled.div`
 export const CardContainer = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        width: 100%;
+    }
 `

@@ -27,6 +27,10 @@ export const BackButton = styled.button`
 
 export const ButtonLabel = styled.div`
     color: var(--hre-light-green);
+
+    @media (max-width: 768px) {
+        color: var(--dark-grey);
+    }
 `
 
 export const FAArrow = styled(FontAwesomeIcon)`
