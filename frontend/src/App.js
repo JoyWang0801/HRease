@@ -45,7 +45,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <GlobalStyles>
+        <GlobalStyles/>
           <Routes>
             <Route path="/" element={<LoginPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} />
             <Route path="/addUser" element={<AddUserPage />} />
@@ -55,7 +55,6 @@ function App() {
             <Route path="/employee" element={<EmployeeView />} />
             <Route path="/map" element={<MapViewPage />} />
           </Routes>
-        </GlobalStyles>
       </BrowserRouter>
     </ThemeProvider>
   );
