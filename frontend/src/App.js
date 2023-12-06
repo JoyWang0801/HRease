@@ -12,7 +12,6 @@ import DetailedBranchPage from './pages/DetailedBranchPage';
 import { useEffect, useState } from 'react';
 import MapViewPage from './pages/MapViewPage';
 import ProtectedRoute from './components/ProtectedRoute';
-import pb from './lib/pocketbase';
 
 // Create a theme instance.
 const theme = createTheme({
