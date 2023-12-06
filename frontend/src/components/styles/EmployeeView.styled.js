@@ -19,10 +19,12 @@ export const ProfilePicture = styled.img`
     width: 175px;
     height: 175px;
     border-radius: 50%;
+    object-fit: cover; /* This ensures the image is cropped and not stretched */
+    object-position: center; /* This centers the crop */
 
     @media (max-width: 768px) {
-        max-width: 150px; 
-        max-height: 150px;
+        width: 150px; 
+        height: 150px;
     }
 `
 
