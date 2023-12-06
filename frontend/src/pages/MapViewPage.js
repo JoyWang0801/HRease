@@ -2,7 +2,7 @@
 
 import { React, useState } from "react";
 import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
-import { Container, Grid } from "@mui/material";
+import {Box, Container, Grid} from "@mui/material";
 import NavBar from "../components/NavBar";
 import BubbleComponent from "../components/BubbleComponent";
 import { useEffect } from "react";
@@ -23,12 +23,13 @@ export default function MapViewPage() {
                     ...record
                 }));
                 setRows(dataRows);
+                //console.log(dataRows);
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
         }
         fetchData();
-    });
+    }, []);
 
     return (
         <Container disableGutters maxWidth={false}>
@@ -39,22 +40,22 @@ export default function MapViewPage() {
                     <NavBar />
                 </Grid>
                 {/* Main content */}
-                <Grid item xs={12} sm={8} md={9.4} container spacing={3}>
-                    <APIProvider apiKey={process.env.REACT_APP_MAP_TOKEN}>
-                        <div style={{ height: '100vh', width: '100%' }}>
-                            <Map zoom={12.5} center={position} mapId={process.env.REACT_APP_MAP_ID}>
-                                {rows.map((row) => (
-                                    <AdvancedMarker position={{ lat: row.lat, lng: row.long }} onClick={() => setOpen(true)}>
-                                        <BubbleComponent />
-                                    </AdvancedMarker>
-                                ))}
-                                {/* <AdvancedMarker position={position} onClick={() => setOpen(true)}>
-                                    <BubbleComponent />
-                                </AdvancedMarker> */}
-                            </Map>
-                        </div>
-                    </APIProvider>
-                </Grid>
+                    <Grid item xs={12} sm={8} md={9.4} container spacing={3} sx={{mt:'5px'}}>
+                            <APIProvider apiKey={process.env.REACT_APP_MAP_TOKEN}>
+                                <div style={{ height: '100vh', width: '100%' }}>
+                                    <Map zoom={12.5} center={position} mapId={process.env.REACT_APP_MAP_ID}>
+                                        {rows.map((row) => (
+                                            <AdvancedMarker position={{ lat: row.lat, lng: row.long }} onClick={() => setOpen(true)}>
+                                                <BubbleComponent employeeIdList={row.employees} />
+                                            </AdvancedMarker>
+                                        ))}
+                                        {/* <AdvancedMarker position={position} onClick={() => setOpen(true)}>
+                                            <BubbleComponent />
+                                        </AdvancedMarker> */}
+                                    </Map>
+                                </div>
+                            </APIProvider>
+                    </Grid>
             </Grid>
             {/*</Box>*/}
         </Container>

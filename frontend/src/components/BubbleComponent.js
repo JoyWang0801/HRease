@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Paper, Avatar, Typography, Grid, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import pb from "../lib/pocketbase";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
     position: 'relative',
@@ -37,16 +38,38 @@ const InfoContainer = styled(Box)(({ theme }) => ({
 }));
 
 // Replace with your actual data
-const employees = [
-    { id: 1, name: 'Alice', present: true },
-    { id: 2, name: 'Bob', present: false },
-    // ... add more employees
-];
+// const employees = [
+//     { id: 1, name: 'Alice', present: true },
+//     { id: 2, name: 'Bob', present: false },
+//     // ... add more employees
+// ];
 
-function BubbleComponent() {
+function BubbleComponent({employeeIdList}) {
     const attendance = employees.filter(e => e.present).length;
     const total = employees.length;
     const attendancePercentage = (attendance / total * 100).toFixed(0);
+    const [employees, setEmployees] = useState([]);
+
+    let employ
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                //console.log(employeeIdList);
+               //setEmployees(employeeIdList);
+
+                employeeIdList.map(async (employeeId) => {
+                    // const employeeRecord = await pb
+                    //     .collection("employee")
+                    //     .getOne(employeeId.toString());
+                });
+            } catch (error) {
+                console.error("Failed to fetch data:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <StyledPaper>
