@@ -6,12 +6,14 @@ import {Container, Grid} from "@mui/material";
 import NavBar from "../components/NavBar";
 import BubbleComponent from "../components/BubbleComponent";
 import pb from "../lib/pocketbase";
+import { useNavigate } from "react-router-dom";
 
 export default function MapViewPage() {
     const position = { lat: 51.11949664317023, lng: -114.04654247485743 };
     const [open, setOpen] = useState(false);
     const [rows, setRows] = useState();
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
@@ -71,10 +73,16 @@ export default function MapViewPage() {
                                 <Map zoom={12.5} center={position} mapId={process.env.REACT_APP_MAP_ID}>
                                     {rows.map((row) => (
                                         <AdvancedMarker position={{lat: row[0].lat, lng: row[0].long}}
-                                                        onClick={() => setOpen(true)}>
+                                                        onClick={() => {
+                                                            setOpen(true);
+                                                            navigate('/detailBranch', {state: {branchInfo: row}});
+                                                        }}>
                                             <BubbleComponent branchInfo={row}/>
                                         </AdvancedMarker>
                                     ))}
+                                    {/*{open && (*/}
+                                    {/*    navigate('/detailBranch', { branchId: rows[0].id })*/}
+                                    {/*)}*/}
                                     {/* <AdvancedMarker position={position} onClick={() => setOpen(true)}>
                                             <BubbleComponent />
                                         </AdvancedMarker> */}

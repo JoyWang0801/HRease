@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Card, EmployeeFirstName, EmployeeLastName, InfoLeft, InfoRight, NameContainer, PositonType, ProfilePicture } from "./styles/EmployeeCard.styled"
+import pb from '../lib/pocketbase';
 
 function EmployeeCard( {employee} ) {
     const [isMobile, setIsMobile] = useState(false);
@@ -26,12 +27,12 @@ function EmployeeCard( {employee} ) {
                     <EmployeeLastName>{employee.lastName}</EmployeeLastName>
                 </NameContainer>
                 {
-                    !isMobile ? <PositonType>{employee.position} • {employee.jobType}</PositonType> : null
+                    !isMobile ? <PositonType>{employee.role} • {employee.jobType}</PositonType> : null
                 }
             </InfoLeft>
             <InfoRight>
                 {
-                    !isMobile ? <ProfilePicture src={employee.picture}/> : <PositonType>{employee.position} • {employee.jobType}</PositonType>
+                    !isMobile ? <ProfilePicture src={pb.files.getUrl(employee, employee.avatar)}/> : <PositonType>{employee.role} • {employee.jobType}</PositonType>
                 }
             </InfoRight>
         </Card>

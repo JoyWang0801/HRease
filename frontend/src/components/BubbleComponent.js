@@ -73,8 +73,6 @@ function BubbleComponent({branchInfo}) {
     useEffect(() => {
         function getInformation(branchInfo)
         {
-            console.log(branchInfo);
-
             const eList = []
             let totalSalary = 0;
             for (const [key, value] of Object.entries(branchInfo)) {

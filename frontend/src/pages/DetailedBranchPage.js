@@ -10,6 +10,7 @@ import AlphabetHeader from "../components/AlphabetHeader";
 import EmployeeCard from "../components/EmployeeCard";
 import nohraPic from '../assets/nohra-aaron.png'
 import johnPic from '../assets/john-adams.png'
+import {useLocation} from "react-router-dom";
 
 
 
@@ -47,12 +48,17 @@ const branch1 = {
 const allEmployees = [emp1, emp3]
 
 function DetailedBranchPage({branch}) {
-
-    const [filteredNames, setFilteredNames] = useState(allEmployees);
     const [letterFilter, setLetterFilter] = useState("");
     const [isMobile, setIsMobile] = useState(false);
+    const [employees, setEmployees] = useState([]);
+    // const [filteredNames, setFilteredNames] = useState(allEmployees);
+    const [filteredNames, setFilteredNames] = useState(employees);
 
-        useEffect(() => {
+
+    const {state} = useLocation();
+    const { branchInfo } = state;
+
+    useEffect(() => {
             const updateViewport = () => {
                 setIsMobile(window.innerWidth <= 768);
             }
@@ -60,7 +66,22 @@ function DetailedBranchPage({branch}) {
             updateViewport();
 
             window.addEventListener('resize', updateViewport);
-            
+
+            function getInformation(branchInfo)
+            {
+                const eList = []
+                for (const [key, value] of Object.entries(branchInfo)) {
+                    value.expand.employees.forEach((element) => {
+                        element["role"] = value.role;
+                        element["jobType"] = value.employmentType;
+                        eList.push(element);
+                    });
+                }
+
+                setEmployees(eList);
+            }
+
+            getInformation(branchInfo);
             return () => {
                 window.removeEventListener('resize', updateViewport);
             }
@@ -70,10 +91,12 @@ function DetailedBranchPage({branch}) {
         setLetterFilter(letter)
         
         if (letter === 'All') {
-            setFilteredNames(allEmployees);
+            // setFilteredNames(allEmployees);
+            setFilteredNames(employees);
         }
         else {
-            const filteredEmployees = allEmployees.filter((person) => {
+            // const filteredEmployees = allEmployees.filter((person) => {
+            const filteredEmployees = employees.filter((person) => {
                 const firstLetterLastName = person.lastName.charAt(0).toUpperCase();
                 return firstLetterLastName === letter;
             });
@@ -85,13 +108,16 @@ function DetailedBranchPage({branch}) {
 
     const handleSearchChange = (event) => {
         console.log(event.target.value);
-        const filteredEmployees = allEmployees.filter((person) => {
-            return (person.firstName.toLowerCase().includes(event.target.value.toLowerCase()) || 
+        // const filteredEmployees = allEmployees.filter((person) => {
+        const filteredEmployees = employees.filter((person) => {
+            return (person.firstName.toLowerCase().includes(event.target.value.toLowerCase()) ||
             (person.lastName.toLowerCase().includes(event.target.value.toLowerCase())));
         });
         setFilteredNames(filteredEmployees);
     }
 
+    const branchName = branchInfo[0].address.split(',');
+    console.log(employees);
     return (
         <PageContainer>
             <NavBar />
@@ -106,8 +132,10 @@ function DetailedBranchPage({branch}) {
                         </ButtonContainer>
                         <BranchInformationWrapper>
                             <HeaderMatrix>
-                                <BranchHeader>{branch1.name} • {branch1.city}, {branch1.province}</BranchHeader>
-                                {!isMobile ? <TagCounter>{allEmployees.length} Employees</TagCounter> : null}
+                                {/*<BranchHeader>{branch1.name} • {branch1.city}, {branch1.province}</BranchHeader>*/}
+                                <BranchHeader>{branchName[0]} • {branchName[1]}, {branchName[2].split(' ')[1]}</BranchHeader>
+                                {/*{!isMobile ? <TagCounter>{allEmployees.length} Employees</TagCounter> : null}*/}
+                                {!isMobile ? <TagCounter>{employees.length} Employees</TagCounter> : null}
                             </HeaderMatrix>
                             {!isMobile ? <AlphabetBar onLetterClick={handleLetterClick} /> : <SearchBar handleSearchChange={handleSearchChange}/>}
                         </BranchInformationWrapper>
