@@ -59,74 +59,75 @@ const PersonalView = () => {
 
     useEffect(() => {
         const fetchEmployeeID = async () => {
-          try {
-            // Check if userID is already available from params
-            if (params) {
-              setEmployeeID(params);
-            } else {
-              // Fetch the employee ID from the collection
-              const response = await pb.collection("employee").getFirstListItem('loginInfo="' + userID + '"');
-              if (response && response.id) {
-                setEmployeeID(response.id);
-              } else {
-                throw new Error("Employee ID not found");
-              }
+            try {
+                // Check if userID is already available from params
+                if (params) {
+                    setEmployeeID(params);
+                } else {
+                    // Fetch the employee ID from the collection
+                    const response = await pb.collection("employee").getFirstListItem('loginInfo="' + userID + '"');
+                    if (response && response.id) {
+                        setEmployeeID(response.id);
+                    } else {
+                        throw new Error("Employee ID not found");
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching employee ID:", error);
             }
-          } catch (error) {
-            console.error("Error fetching employee ID:", error);
-          }
         };
-    
-        fetchEmployeeID();
-      }, [userID, params]);
-    
-      useEffect(() => {
-        const fetchData = async () => {
-          try {
-            if (employeeID) {
-              const employeeData = await pb.collection("employee").getOne(employeeID);
-              setEmployeeData(employeeData);
-              setProfileImageUrl(pb.files.getUrl(employeeData, employeeData.avatar));
-            }
-          } catch (error) {
-            console.error("Failed to fetch data:", error);
-          }
-        };
-    
-        fetchData();
-      }, [employeeID]);
-    
-      useEffect(() => {
-        const fetchBranchInfo = async () => {
-          try {
-            if (employeeID) {
-              // Assuming you have a relation or a way to link employee to branch
-              const branchRecord = await pb.collection('branch').getFirstListItem(`employees ~ "${employeeID}"`);
-              setBranchData(branchRecord);
-            }
-          } catch (error) {
-            console.error("Error fetching branch data:", error);
-          }
-        };
-      
-        fetchBranchInfo();
-      }, [employeeID]);
 
-      useEffect(() => {
-        const fetchUserData = async () => {
-          try {
-            if (employeeID) {
-              // Assuming you have a relation or a way to link employee to branch
-              const userData = await pb.collection('users').getOne(userID);
-              setUserData(userData);
+        fetchEmployeeID();
+    }, [userID, params]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (employeeID) {
+                    const employeeData = await pb.collection("employee").getOne(employeeID);
+                    setEmployeeData(employeeData);
+                    setProfileImageUrl(pb.files.getUrl(employeeData, employeeData.avatar));
+                }
+            } catch (error) {
+                console.error("Failed to fetch data:", error);
             }
-          } catch (error) {
-            console.error("Error fetching user data:", error);
-          }
         };
-      
+
+        fetchData();
+    }, [employeeID]);
+
+    useEffect(() => {
+        const fetchBranchInfo = async () => {
+            try {
+                if (employeeID) {
+                    // Assuming you have a relation or a way to link employee to branch
+                    const branchRecord = await pb.collection('branch').getFirstListItem(`employees ~ "${employeeID}"`);
+                    setBranchData(branchRecord);
+                }
+            } catch (error) {
+                console.error("Error fetching branch data:", error);
+            }
+        };
+
+        fetchBranchInfo();
+    }, [employeeID]);
+
+    useEffect(() => {
         fetchUserData();
-      }, [userID]);
+    }, [userID]);
+
+    const fetchUserData = async () => {
+        if (!userID) {
+            console.log("No userID available");
+            return;
+        }
+        try {
+            const userData = await pb.collection('users').getOne(userID);
+            setUserData(userData);
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        }
+    };
 
     return (
         <Container disableGutters maxWidth={false}>
@@ -154,16 +155,16 @@ const PersonalView = () => {
                             <UL>
                                 <LI>
                                     <Label>Username:</Label>
-                                    <Info>{userData.username}</Info>
+                                    <Info>{userData.username || ''}</Info>
                                 </LI>
-                                <LI>
+                                {/* <LI>
                                     <Label>Password:</Label>
                                     <Info>Info</Info>
                                 </LI>
                                 <LI>
                                     <Label>2FA:</Label>
-                                    <Info>Info</Info>
-                                </LI>
+                                    <Info>Info</Info> */}
+                                {/* </LI> */}
                                 <LI>
                                     <Label>Work Email:</Label>
                                     <Info>{employeeData.workEmail}</Info>
