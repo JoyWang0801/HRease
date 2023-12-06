@@ -42,6 +42,7 @@ export const ProfileCard = styled.div `
 `;
 
 export const ContainerWrapper = styled.div `
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     margin-top: 100px;
