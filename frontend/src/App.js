@@ -66,6 +66,7 @@ function App() {
           <Route path="/generalBranch" element={<ProtectedRoute isLoggedIn={isLoggedIn}><GeneralBranchPage /></ProtectedRoute>} />
           <Route path="/personal" element={<ProtectedRoute isLoggedIn={isLoggedIn}><PersonalView /></ProtectedRoute>} />
           <Route path="/employee" element={<ProtectedRoute isLoggedIn={isLoggedIn}><EmployeeView /></ProtectedRoute>} />
+          <Route path="/employee/:id" element={<ProtectedRoute isLoggedIn={isLoggedIn}><EmployeeView /></ProtectedRoute>} />
           <Route path="/map" element={<ProtectedRoute isLoggedIn={isLoggedIn}><MapViewPage /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>

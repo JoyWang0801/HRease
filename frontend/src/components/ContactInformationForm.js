@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, Box, TextField, Grid, Typography } from '@mui/material';
 import { CardHeader, FourGrid, FullHolder, HalfHolder, InformationContainer, InformationMatrix, Legend } from './styles/InformationCard';
 
-const ContactInformationForm = ({ formData, dependentData }) => {
+const ContactInformationForm = ({ formData }) => {
   const cardStyle = {
     borderRadius: "15px",
     padding: "24px",
@@ -22,17 +22,6 @@ const ContactInformationForm = ({ formData, dependentData }) => {
           <Legend>Phone Number</Legend>
           {/* 123-123-1234 */}
           {formData.phoneNumber}
-        </FullHolder>
-        <CardHeader>Emergency Contact</CardHeader>
-        <FullHolder>
-          <Legend>Dependant Name</Legend>
-          {/* Jane Adams */}
-          {dependentData.fullName}
-        </FullHolder>
-        <FullHolder>
-          <Legend>Dependent Phone Number</Legend>
-          {/* 123-321-4321 */}
-          {dependentData.phoneNumber}
         </FullHolder>
       </InformationMatrix>
     </InformationContainer>

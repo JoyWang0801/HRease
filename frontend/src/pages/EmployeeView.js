@@ -3,51 +3,59 @@ import PersonalInformationForm from "../components/PersonalInformationForm";
 import ContactInformationForm from "../components/ContactInformationForm";
 import NavBar from "../components/NavBar";
 import pb from "../lib/pocketbase";
-import {  GreenHeaderContainer, MainContentContainer, PageContainer } from "../components/styles/Containers";
+import { GreenHeaderContainer, MainContentContainer, PageContainer } from "../components/styles/Containers";
 import { EmployeeHeader, EmployeeHeaderContainer, EmployeeInformationContainer, EmployeePosition, InformationWrapper, ProfilePicture } from "../components/styles/EmployeeView.styled";
+import { useParams } from "react-router-dom";
 
-pb.autoCancellation(false);
+pb.autoCancellation(false)
 
 const EmployeeProfile = () => {
   const [employeeData, setEmployeeData] = useState("");
   const [profileImageUrl, setProfileImageUrl] = useState("");
   const [dependentData, setDependentData] = useState("");
-  const [branchData, setBranchData] = useState({ items: [] });
+  const [branchData, setBranchData] = useState('');
+  const [employeeID, setEmployeeID] = useState(null);
+  const params = useParams().id;
   const userID = localStorage.getItem('userID');
+
+  useEffect(() => {
+    const fetchEmployeeID = async () => {
+      try {
+        // Check if userID is already available from params
+        if (params) {
+          setEmployeeID(params);
+        } else {
+          // Fetch the employee ID from the collection
+          const response = await pb.collection("employee").getFirstListItem('loginInfo="' + userID + '"');
+          if (response && response.id) {
+            setEmployeeID(response.id);
+          } else {
+            throw new Error("Employee ID not found");
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching employee ID:", error);
+      }
+    };
+
+    fetchEmployeeID();
+  }, [userID, params]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const IDResponse = await pb.collection("employee").getList(1, 1, {
-          filter: `loginInfo ~ "${userID}"`,
-        });
-  
-        const employeeID = IDResponse.items[0]?.id;
-        if (!employeeID) {
-          throw new Error("Employee ID not found");
+        if (employeeID) {
+          const employeeData = await pb.collection("employee").getOne(employeeID);
+          setEmployeeData(employeeData);
+          setProfileImageUrl(pb.files.getUrl(employeeData, employeeData.avatar));
         }
-  
-        const employeeData = await pb.collection("employee").getOne(employeeID);
-        setEmployeeData(employeeData);
-  
-        const url = pb.files.getUrl(employeeData, employeeData.avatar);
-        setProfileImageUrl(url);
-  
-        const dependent = await pb.collection("dependent").getOne(employeeData.dependent);
-        setDependentData(dependent);
-  
-        const branch = await pb.collection("branch").getList(1, 1, {
-          filter: `employees ~ "${employeeID}"`,
-        });
-        setBranchData(branch);
-  
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
     };
-  
+
     fetchData();
-  }, [userID]);  
+  }, [employeeID]);
 
   return (
     <PageContainer>
@@ -58,16 +66,16 @@ const EmployeeProfile = () => {
             <ProfilePicture src={profileImageUrl}></ProfilePicture>
             {/* <ProfilePicture src={profilePic}></ProfilePicture> */}
             <EmployeeHeaderContainer>
-              <EmployeeHeader>{employeeData.firstName} {employeeData.lastName}</EmployeeHeader> 
-              {/* <EmployeeHeader>John Adams</EmployeeHeader> */}
-              <EmployeePosition>{branchData.items?.[0]?.role} • {branchData.items?.[0]?.employmentType}</EmployeePosition>
-              {/* <EmployeePosition>Manager • Full-time</EmployeePosition> */}
+              <EmployeeHeader>{employeeData.firstName} {employeeData.lastName}</EmployeeHeader>
+              {/* <EmployeePosition>{branchData.}</EmployeePosition> */}
+              <EmployeePosition>{employeeData.employment_type}</EmployeePosition>
+              <EmployeePosition>{!employeeData.isManager ? "Employee" : "Manager"}</EmployeePosition>
             </EmployeeHeaderContainer>
           </EmployeeInformationContainer>
         </GreenHeaderContainer>
         <InformationWrapper>
-          <PersonalInformationForm formData={employeeData}/>
-          <ContactInformationForm formData={employeeData} dependentData={dependentData}/>
+          <PersonalInformationForm formData={employeeData} />
+          <ContactInformationForm formData={employeeData} />
         </InformationWrapper>
       </MainContentContainer>
     </PageContainer>
