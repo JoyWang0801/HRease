@@ -54,7 +54,7 @@ function DetailedBranchPage({branch}) {
     const [employees, setEmployees] = useState([]);
     // const [filteredNames, setFilteredNames] = useState(allEmployees);
     const [filteredNames, setFilteredNames] = useState(employees);
-    const [branchName, setBranchName] = useState()
+    const [branchName, setBranchName] = useState(["", "", ""]);
 
 
     const {state} = useLocation();
