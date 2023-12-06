@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Nav, NavContainer, NavLogo, NavItems, NavItem, StyledLink } from './styles/NavBar.styled'
+import { Nav, NavContainer, NavLogo, NavItems, StyledLink } from './styles/NavBar.styled'
 import navLogo from '../assets/Hrease_logo.png'
 import { useNavigate } from 'react-router-dom';
 
@@ -15,7 +15,7 @@ function NavBar() {
         updateViewport();
 
         window.addEventListener('resize', updateViewport);
-        
+
         return () => {
             window.removeEventListener('resize', updateViewport);
         }
@@ -30,16 +30,19 @@ function NavBar() {
     return (
         <NavContainer>
             <Nav>
-                { !isMobile ? <NavLogo src={navLogo}></NavLogo> : null }
+                {!isMobile ? <NavLogo src={navLogo}></NavLogo> : null}
                 <NavItems>
                     <StyledLink to={"/personal"}>Dashboard</StyledLink>
                     <StyledLink to={"/employee"}>Employee</StyledLink>
                     <StyledLink to={"/detailBranch"}>Branches</StyledLink>
                     <StyledLink to={"/map"}>Map</StyledLink>
-                    <StyledLink onClick={handleLogout}>Logout</StyledLink>
                 </NavItems>
+                <div style={{marginTop: isMobile ? '0' : 'auto', width: '100%' }}>
+                    <StyledLink onClick={handleLogout}>Logout</StyledLink>
+                </div>
             </Nav>
         </NavContainer>
+
     )
 }
 
