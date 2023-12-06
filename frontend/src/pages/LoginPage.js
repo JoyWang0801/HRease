@@ -13,6 +13,7 @@ export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
         e.preventDefault();
         try {
             let user = await pb.collection('users').authWithPassword(email, password);
+            console.log(user);
             setIsLoggedIn(true);
             console.log('User logged in', user);
             localStorage.setItem('authToken', user.token);

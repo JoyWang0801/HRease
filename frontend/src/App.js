@@ -12,6 +12,8 @@ import DetailedBranchPage from './pages/DetailedBranchPage';
 import { useEffect, useState } from 'react';
 import MapViewPage from './pages/MapViewPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import pb from "./lib/pocketbase";
+import AccountRecovery from './pages/AccountRecovery';
 
 // Create a theme instance.
 const theme = createTheme({
@@ -59,7 +61,7 @@ function App() {
       <BrowserRouter>
         <GlobalStyles />
         <Routes>
-          <Route path="/" element={<PersonalView></PersonalView>}></Route>
+          <Route path='/' element={<AccountRecovery></AccountRecovery>}></Route>
           {/* <Route path="/" element={<LoginPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} /> */}
           <Route path="/addUser" element={<ProtectedRoute isLoggedIn={isLoggedIn}><AddUserPage /></ProtectedRoute>} />
           <Route path="/detailBranch" element={<ProtectedRoute isLoggedIn={isLoggedIn}><DetailedBranchPage /></ProtectedRoute>} />
