@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Card, EmployeeFirstName, EmployeeLastName, InfoLeft, InfoRight, NameContainer, PositonType, ProfilePicture } from "./styles/EmployeeCard.styled"
 import pb from '../lib/pocketbase';
+import defaultPFP from "../assets/default-profile.png";
 
 function EmployeeCard( {employee} ) {
     const [isMobile, setIsMobile] = useState(false);
@@ -19,6 +20,8 @@ function EmployeeCard( {employee} ) {
         }
     }, []);
 
+    let pfp = !pb.files.getUrl(employee, employee.avatar) ? defaultPFP : pb.files.getUrl(employee, employee.avatar);
+
     return (
         <Card>
             <InfoLeft>
@@ -32,7 +35,7 @@ function EmployeeCard( {employee} ) {
             </InfoLeft>
             <InfoRight>
                 {
-                    !isMobile ? <ProfilePicture src={pb.files.getUrl(employee, employee.avatar)}/> : <PositonType>{employee.role} • {employee.jobType}</PositonType>
+                    !isMobile ? <ProfilePicture src={pfp}/> : <PositonType>{employee.role} • {employee.jobType}</PositonType>
                 }
             </InfoRight>
         </Card>
