@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import {NavLink} from "react-router-dom";
 
 export const NavContainer = styled.div`
+    position: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,6 +10,12 @@ export const NavContainer = styled.div`
     height: 100vh;
     z-index: 1;
     box-shadow: 4px 0px 20px 1px rgba(0, 0, 0, 0.25);
+
+    @media (max-width: 768px) {
+      position: relative;
+      width: 100vw;
+      height: 7vh;
+    }
 `
 
 export const Nav = styled.div`
@@ -19,6 +26,14 @@ export const Nav = styled.div`
     position: fixed;
     width: 15vw;
     height: 80%;
+
+    @media (max-width: 768px) {
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100vw;
+      height: 8%;
+      background-color: var(--hre-green);
+    }
 `
 
 export const NavLogo = styled.img`
@@ -30,24 +45,33 @@ export const NavItems = styled.div`
     flex-direction: column;
     justify-content: space-between;
     width: 80%;
-    height: 40%;
+    height: 8%;
+
+    @media (max-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      height: auto;
+    }
 `
 export const NavItem = styled.div`
-    font-size: 26px;
     font-weight: 500;
     transition: 0.3s ease-in-out;
-    padding: 10px;
 
     &:hover {
         color: var(--hre-green);
         cursor: pointer;
-        background-color: lightgrey;
         border-radius: 10px; 
+    }
+
+    @media (max-width: 768px) {
+      &:hover {
+        
+      }
     }
 `
 
 export const StyledLink = styled(NavLink)`
-  font-size: 26px;
+  font-size: clamp(16px, 2vw, 26px);
   font-weight: 500;
   transition: 0.3s ease-in-out;
   padding: 10px;
@@ -60,5 +84,13 @@ export const StyledLink = styled(NavLink)`
   }
   &.active {
     color: var(--hre-green);
+
+    @media (max-width: 768px) {
+      color: black;
+    }
+  }
+
+  @media (max-width: 768px) {
+    color: var(--white);
   }
 `;

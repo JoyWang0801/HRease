@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Nav, NavContainer, NavLogo, NavItems, NavItem, StyledLink } from './styles/NavBar.styled'
 import navLogo from '../assets/Hrease_logo.png'
 import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
     const navigate = useNavigate();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const updateViewport = () => {
+            setIsMobile(window.innerWidth <= 768);
+        }
+
+        updateViewport();
+
+        window.addEventListener('resize', updateViewport);
+        
+        return () => {
+            window.removeEventListener('resize', updateViewport);
+        }
+    }, []);
+
     const handleLogout = () => {
         localStorage.setItem('isLoggedIn', false);
         navigate('/', { replace: true }); // Navigate to the home page
@@ -14,7 +30,7 @@ function NavBar() {
     return (
         <NavContainer>
             <Nav>
-                <NavLogo src={navLogo}></NavLogo>
+                { !isMobile ? <NavLogo src={navLogo}></NavLogo> : null }
                 <NavItems>
                     <StyledLink to={"/personal"}>Dashboard</StyledLink>
                     <StyledLink to={"/employee"}>Employee</StyledLink>

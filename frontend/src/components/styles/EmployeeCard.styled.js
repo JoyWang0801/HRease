@@ -13,6 +13,19 @@ export const Card = styled.div`
         transform: translateY(-3px);
         cursor: pointer;
     }
+
+    @media (max-width: 768px) {
+        justify-content: space-between;
+        width: 100%;
+        height: 70px;
+        box-shadow: none;
+        border-bottom: 2px solid var(--hre-green);
+        border-radius: 0;
+
+        &:hover {
+            transform: none;
+        }
+    }   
 `
 
 export const InfoLeft = styled.div`
@@ -30,25 +43,45 @@ export const InfoRight = styled.div`
     justify-content: center;
     width: 40%;
     height: 100%;
+
+    @media (max-width: 768px) {
+        width: auto;
+    }
 `
 
 export const NameContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 768px) {
+        align-items: center;
+        flex-direction: row;
+        gap: 5px;
+    }
 `
 
 export const EmployeeFirstName = styled.div`
     font-size: 22px;
+
+    @media screen {
+        font-size: clamp(16px, 3vw, 22px);
+    }
 `
 
 export const EmployeeLastName = styled.div`
     font-size: 26px;
     font-weight: 600;
+
+    @media (max-width: 768px) {
+        font-size: clamp(16px, 3vw, 22px);
+    }
 `
 
 export const PositonType = styled.div`
     color: var(--hre-dark-green);
-    font-size: 12px;
+    font-size: clamp(9px, 2vw, 12px);
+
+
 `
 
 export const ProfilePicture = styled.img`
