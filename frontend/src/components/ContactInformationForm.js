@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardContent, Box, TextField, Grid, Typography } from '@mui/material';
+import { CardHeader, FourGrid, FullHolder, HalfHolder, InformationContainer, InformationMatrix, Legend } from './styles/InformationCard';
 
-const ContactInformationForm = ({ formData, dependentData }) => {
+const ContactInformationForm = ({ formData }) => {
   const cardStyle = {
     borderRadius: "15px",
     padding: "24px",
@@ -9,166 +10,21 @@ const ContactInformationForm = ({ formData, dependentData }) => {
   };
 
   return (
-    <Card style={cardStyle}>
-      <CardContent>
-        <Box component="form" noValidate autoComplete="off">
-          <Typography sx={{ fontSize: 30, fontWeight: '600' }} gutterBottom>
-            Contact Information
-          </Typography>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="email"
-                label="Email"
-                value={formData.workEmail || ''}
-                InputLabelProps={{
-                  readOnly: true,
-                }}
-                InputProps={{
-                  style: { fontSize: '25px' },
-                  readOnly: true,
-                }}
-                variant="outlined"
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 5,
-                    '& fieldset': {
-                      borderColor: '#6EB38E',
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="phone"
-                label="Phone"
-                value={formData.phoneNumber || ''}
-                InputLabelProps={{
-                  readOnly: true,
-                }}
-                InputProps={{
-                  style: { fontSize: '25px' },
-                  readOnly: true,
-                }}
-                variant="outlined"
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 5,
-                    '& fieldset': {
-                      borderColor: '#6EB38E',
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography sx={{ fontSize: 30, fontWeight: '600' }} gutterBottom>
-                Emergency Contact
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                id="relationship"
-                label="Relationship"
-                value={dependentData.relationship || ''}
-                InputLabelProps={{
-                  readOnly: true,
-                }}
-                InputProps={{
-                  style: { fontSize: '25px' },
-                  readOnly: true,
-                }}
-                variant="outlined"
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 5,
-                    '& fieldset': {
-                      borderColor: '#6EB38E',
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                id="full_name"
-                label="Full Name"
-                value={dependentData.fullName || ''}
-                InputLabelProps={{
-                  readOnly: true,
-                }}
-                InputProps={{
-                  style: { fontSize: '25px' },
-                  readOnly: true,
-                }}
-                variant="outlined"
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 5,
-                    '& fieldset': {
-                      borderColor: '#6EB38E',
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                id="emergency_email"
-                label="Email"
-                value={dependentData.email || ''}
-                InputLabelProps={{
-                  readOnly: true,
-                }}
-                InputProps={{
-                  style: { fontSize: '25px' },
-                  readOnly: true,
-                }}
-                variant="outlined"
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 5,
-                    '& fieldset': {
-                      borderColor: '#6EB38E',
-                    },
-                  },
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                fullWidth
-                id="emergency_phone"
-                label="Phone"
-                value={dependentData.phoneNumber || ''}
-                InputLabelProps={{
-                  readOnly: true,
-                }}
-                InputProps={{
-                  style: { fontSize: '25px' },
-                  readOnly: true,
-                }}
-                variant="outlined"
-                sx={{
-                  '& .MuiOutlinedInput-root': {
-                    borderRadius: 5,
-                    '& fieldset': {
-                      borderColor: '#6EB38E',
-                    },
-                  },
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Box>
-      </CardContent>
-    </Card>
+    <InformationContainer>
+      <InformationMatrix>
+        <CardHeader>Contact Information</CardHeader>
+        <FullHolder>
+          <Legend>Email</Legend>
+          {/* johnadams@gmail.com */}
+          {formData.workEmail}
+        </FullHolder>
+        <FullHolder>
+          <Legend>Phone Number</Legend>
+          {/* 123-123-1234 */}
+          {formData.phoneNumber}
+        </FullHolder>
+      </InformationMatrix>
+    </InformationContainer>
   );
 };
 

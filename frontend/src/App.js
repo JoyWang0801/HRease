@@ -10,6 +10,9 @@ import GeneralBranchPage from './pages/GeneralBranchPage';
 import GlobalStyles from './components/styles/Global';
 import DetailedBranchPage from './pages/DetailedBranchPage';
 import { useEffect, useState } from 'react';
+import MapViewPage from './pages/MapViewPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import pb from "./lib/pocketbase";
 
 // Create a theme instance.
 const theme = createTheme({
@@ -34,24 +37,38 @@ const theme = createTheme({
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'false');
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
+    if (storedIsLoggedIn !== null) {
+      return storedIsLoggedIn === 'true';
+    } else {
+      const isLoggedIn = false;
+      localStorage.setItem('isLoggedIn', isLoggedIn.toString());
+      return isLoggedIn;
+    }
+  });
+
   useEffect(() => {
-    localStorage.setItem('isLoggedIn', isLoggedIn);
+    // Update 'isLoggedIn' in localStorage whenever the state changes
+    localStorage.setItem('isLoggedIn', isLoggedIn.toString());
+    console.log("isLoggedIn: " + isLoggedIn);
   }, [isLoggedIn]);
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <GlobalStyles/>
-          <Routes>
-            <Route path="/" element={<LoginPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} />
-            <Route path="/addUser" element={<AddUserPage />} />
-            <Route path="/detailBranch" element={<DetailedBranchPage />} />
-            <Route path="/generalBranch" element={<GeneralBranchPage />} />
-            <Route path="/personal" element={<PersonalView />} />
-            <Route path="/employee" element={<EmployeeView />} />
-          </Routes>
+        <GlobalStyles />
+        <Routes>
+          <Route path="/" element={<LoginPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} />
+          <Route path="/addUser" element={<ProtectedRoute isLoggedIn={isLoggedIn}><AddUserPage /></ProtectedRoute>} />
+          <Route path="/detailBranch" element={<ProtectedRoute isLoggedIn={isLoggedIn}><DetailedBranchPage /></ProtectedRoute>} />
+          <Route path="/generalBranch" element={<ProtectedRoute isLoggedIn={isLoggedIn}><GeneralBranchPage /></ProtectedRoute>} />
+          <Route path="/personal" element={<ProtectedRoute isLoggedIn={isLoggedIn}><PersonalView /></ProtectedRoute>} />
+          <Route path="/employee" element={<ProtectedRoute isLoggedIn={isLoggedIn}><EmployeeView /></ProtectedRoute>} />
+          <Route path="/employee/:id" element={<ProtectedRoute isLoggedIn={isLoggedIn}><EmployeeView /></ProtectedRoute>} />
+          <Route path="/map" element={<ProtectedRoute isLoggedIn={isLoggedIn}><MapViewPage /></ProtectedRoute>} />
+        </Routes>
       </BrowserRouter>
     </ThemeProvider>
   );
