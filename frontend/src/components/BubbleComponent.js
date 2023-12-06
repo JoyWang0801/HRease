@@ -38,30 +38,6 @@ const InfoContainer = styled(Box)(({ theme }) => ({
     margin: theme.spacing(2, 0),
 }));
 
-// Replace with your actual data
-// const employees = [
-//     { id: 1, name: 'Alice', present: true },
-//     { id: 2, name: 'Bob', present: false },
-//     // ... add more employees
-// ];
-
-// const formList = (keyName, obj) =>
-// {
-//     const returnList = []
-//     for (const [key, value] of Object.entries(obj)) {
-//         // console.log("key: ", key, "value: ", value);
-//         // if(key === keyName)
-//         // {
-//         //     console.log(`Key: ${key}, Value: ${value} matched\n`);
-//         //     returnList.push(value);
-//         // }
-//         returnList.push(value[keyName]);
-//         console.log("pushed: ", value[keyName]);
-//     }
-//
-//     return returnList;
-// }
-
 function BubbleComponent({branchInfo}) {
     const [employees, setEmployees] = useState([]);
     const attendance = employees.filter(e => e.present).length;
