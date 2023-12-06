@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, TextField, Container, Typography, Box, CssBaseline, Paper } from '@mui/material';
 import pb from "../lib/pocketbase";
-import { useNavigate } from 'react-router-dom';
 import login_background from '../assets/login_background.jpg';
 import logo from '../assets/Hrease_logo.png';
 import { useTheme } from '@emotion/react';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage({ setIsLoggedIn, isLoggedIn }) {
-    const navigate = useNavigate();
-    if (isLoggedIn) {
-        navigate('/personal');
-    }
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [userID, setUserID] = useState("");
+    const [userID, setUserID] = useState('');
     const theme = useTheme();
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -24,14 +20,19 @@ export default function LoginPage({ setIsLoggedIn, isLoggedIn }) {
             let user = await pb.collection('users').authWithPassword(email, password);
             setIsLoggedIn(true);
             setUserID(user.record.id);
-            console.log('User logged in', user);
             localStorage.setItem('authToken', user.token);
-            localStorage.setItem('userID', userID);
         } catch (err) {
             console.error('Failed to login:', err);
             setError(err.message);
         }
     };
+
+    if (isLoggedIn) {
+        localStorage.setItem('userID', userID);
+        console.log("userID: " + userID);
+        navigate('/personal', { replace: true }); // Navigate to the home page
+        window.location.reload();
+    }
 
     return (
         <Box
