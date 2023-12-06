@@ -53,8 +53,6 @@ function App() {
     console.log("isLoggedIn: " + isLoggedIn);
   }, [isLoggedIn]);
 
-  console.log("pb: ", pb.baseUrl);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
