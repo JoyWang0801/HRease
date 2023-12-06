@@ -5,8 +5,9 @@ import Grid from "@mui/material/Grid";
 import '../components/styles/digital-clock.css'
 import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
-import { GreenBox, TopWrapper, ProfileCard, Time, ClockInOutButton, ContainerWrapper, EmployeeName, EmployeePronouns, EmployeeRole, ProfilePic } from '../components/styles/PersonalView.style';
+import { GreenBox, TopWrapper, ProfileCard, Time, ClockInOutButton, ContainerWrapper, EmployeeName, EmployeePronouns, EmployeeRole, ProfilePic, ProfileCardInfoWrapper } from '../components/styles/PersonalView.style';
 // import DigitalClock from "../components/DigitalClock";
+import johnPic from '../assets/john-adams.png'
 
 
 const PersonalView = () => {
@@ -60,16 +61,17 @@ const PersonalView = () => {
                     <ContainerWrapper>
                         <TopWrapper>
                             <ProfileCard>
-                                <ProfilePic src='Hrease_logo.png' alt=''/>
-                                <EmployeeName>Kirby</EmployeeName>
-                                <EmployeeRole>Junior Developer • Full-Time</EmployeeRole>
-                                <EmployeePronouns>They/Them</EmployeePronouns>
-
+                                <ProfilePic src={johnPic} alt='' />
+                                <ProfileCardInfoWrapper>
+                                    <EmployeeName>Kirby</EmployeeName>
+                                    <EmployeeRole><strong>Junior Developer </strong>• Full-Time</EmployeeRole>
+                                    <EmployeePronouns>They/Them</EmployeePronouns>
+                                </ProfileCardInfoWrapper>
                             </ProfileCard>
                             <Time>8:59</Time>
                             <ClockInOutButton>Clock In</ClockInOutButton>
                         </TopWrapper>
-                        {/* <GreenBox>Hello World</GreenBox> */}
+                        <GreenBox>Hello World</GreenBox>
                     </ContainerWrapper>
                 </Grid>
             </Box>
