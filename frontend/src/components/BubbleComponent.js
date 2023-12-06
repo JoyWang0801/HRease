@@ -1,3 +1,4 @@
+
 import React, {useEffect, useState} from 'react';
 import { Paper, Avatar, Typography, Grid, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -44,37 +45,58 @@ const InfoContainer = styled(Box)(({ theme }) => ({
 //     // ... add more employees
 // ];
 
-function BubbleComponent({employeeIdList}) {
+// const formList = (keyName, obj) =>
+// {
+//     const returnList = []
+//     for (const [key, value] of Object.entries(obj)) {
+//         // console.log("key: ", key, "value: ", value);
+//         // if(key === keyName)
+//         // {
+//         //     console.log(`Key: ${key}, Value: ${value} matched\n`);
+//         //     returnList.push(value);
+//         // }
+//         returnList.push(value[keyName]);
+//         console.log("pushed: ", value[keyName]);
+//     }
+//
+//     return returnList;
+// }
+
+function BubbleComponent({branchInfo}) {
+    const [employees, setEmployees] = useState([]);
     const attendance = employees.filter(e => e.present).length;
     const total = employees.length;
     const attendancePercentage = (attendance / total * 100).toFixed(0);
-    const [employees, setEmployees] = useState([]);
-
-    let employ
+    const [manager, setManager] = useState("");
+    const [totalSalary, setTotalSalary] = useState(0);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                //console.log(employeeIdList);
-               //setEmployees(employeeIdList);
+        function getInformation(branchInfo)
+        {
+            console.log(branchInfo);
 
-                employeeIdList.map(async (employeeId) => {
-                    // const employeeRecord = await pb
-                    //     .collection("employee")
-                    //     .getOne(employeeId.toString());
-                });
-            } catch (error) {
-                console.error("Failed to fetch data:", error);
+            const eList = []
+            let totalSalary = 0;
+            for (const [key, value] of Object.entries(branchInfo)) {
+                value.expand.employees.forEach((element) =>eList.push(element));
+                totalSalary += value.salary;
+                if(value.role === "Manager")
+                {
+                    setManager(`${value.expand.employees[0].firstName} ${value.expand.employees[0].lastName}`);
+                }
             }
-        };
+            setEmployees(eList);
+            setTotalSalary(totalSalary);
+        }
 
-        fetchData();
+        getInformation(branchInfo);
     }, []);
+
 
     return (
         <StyledPaper>
             <Typography variant="h6" component="h3">
-                Martindale
+                {branchInfo[0].address.split(',')[0]}
             </Typography>
             <InfoContainer>
                 <Typography component="p">
@@ -89,7 +111,7 @@ function BubbleComponent({employeeIdList}) {
                     Projected Payroll:
                 </Typography>
                 <Typography component="p">
-                    $73258.7
+                    ${totalSalary}
                 </Typography>
             </InfoContainer>
             <InfoContainer>
@@ -97,15 +119,18 @@ function BubbleComponent({employeeIdList}) {
                     Manager:
                 </Typography>
                 <Typography component="p">
-                    Dominic Toretto
+                    {manager === "" ? "No manager" : manager}
                 </Typography>
             </InfoContainer>
             <Grid container spacing={2} justifyContent="center">
                 {employees.map((employee) => (
                     <Grid item key={employee.id}>
-                        <StyledAvatar>
-                            {employee.name[0]}
-                        </StyledAvatar>
+                        {employee.avatar === "" ?
+                            <StyledAvatar>
+                                {employee.lastName[0]}
+                            </StyledAvatar> :
+                            <Avatar alt="Remy Sharp" src={pb.files.getUrl(employee, employee.avatar)} />
+                        }
                     </Grid>
                 ))}
             </Grid>
