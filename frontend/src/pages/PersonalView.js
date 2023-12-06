@@ -3,7 +3,6 @@ import { Box, Button, Card, Container, Paper, styled, Typography } from '@mui/ma
 import pb from "../lib/pocketbase";
 import Grid from "@mui/material/Grid";
 import '../components/styles/digital-clock.css'
-import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
 // import DigitalClock from "../components/DigitalClock";
 
