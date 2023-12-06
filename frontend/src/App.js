@@ -59,7 +59,8 @@ function App() {
       <BrowserRouter>
         <GlobalStyles />
         <Routes>
-          <Route path="/" element={<LoginPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} />
+          <Route path="/" element={<PersonalView></PersonalView>}></Route>
+          {/* <Route path="/" element={<LoginPage setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />} /> */}
           <Route path="/addUser" element={<ProtectedRoute isLoggedIn={isLoggedIn}><AddUserPage /></ProtectedRoute>} />
           <Route path="/detailBranch" element={<ProtectedRoute isLoggedIn={isLoggedIn}><DetailedBranchPage /></ProtectedRoute>} />
           <Route path="/generalBranch" element={<ProtectedRoute isLoggedIn={isLoggedIn}><GeneralBranchPage /></ProtectedRoute>} />

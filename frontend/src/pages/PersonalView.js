@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import '../components/styles/digital-clock.css'
 import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
+import { GreenBox, TopWrapper, ProfileCard, Time, ClockInOutButton, ContainerWrapper, EmployeeName, EmployeePronouns, EmployeeRole, ProfilePic } from '../components/styles/PersonalView.style';
 // import DigitalClock from "../components/DigitalClock";
 
 
@@ -49,34 +50,29 @@ const PersonalView = () => {
 
     return (
         <Container disableGutters maxWidth={false}>
-            {/*<Box mt={0} mb={4}>*/}
+            <Box mt={0} mb={4}>
                 <Grid container spacing={3}>
                     {/* Sidebar */}
                     <Grid item xs={12} sm={4} md={3}>
                         <NavBar />
                     </Grid>
                     {/* Main content */}
-                    <Grid item xs={12} sm={8} md={9} container spacing={3}>
-                        <Grid>
-                            {/*<DigitalClock/>*/}
-                            <Button variant="contained" onClick={punchClock}>
-                                {clockedIn === true ? "ClockOut" : "ClockIn"}
-                            </Button>
-                        </Grid>
-                        <Grid sx={{
-                            width: "100%",
-                            height: "30vh",
-                            borderRadius: 5,
-                            bgcolor: 'primary.main',
+                    <ContainerWrapper>
+                        <TopWrapper>
+                            <ProfileCard>
+                                <ProfilePic src='Hrease_logo.png' alt=''/>
+                                <EmployeeName>Kirby</EmployeeName>
+                                <EmployeeRole>Junior Developer • Full-Time</EmployeeRole>
+                                <EmployeePronouns>They/Them</EmployeePronouns>
 
-                        // '&:hover': {
-                        //     bgcolor: 'primary.dark',
-                        // },
-                    }}>
-                    </Grid>
+                            </ProfileCard>
+                            <Time>8:59</Time>
+                            <ClockInOutButton>Clock In</ClockInOutButton>
+                        </TopWrapper>
+                        {/* <GreenBox>Hello World</GreenBox> */}
+                    </ContainerWrapper>
                 </Grid>
-            </Grid>
-            {/*</Box>*/}
+            </Box>
         </Container>
     );
 };
