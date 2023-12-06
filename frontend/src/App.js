@@ -12,6 +12,7 @@ import DetailedBranchPage from './pages/DetailedBranchPage';
 import { useEffect, useState } from 'react';
 import MapViewPage from './pages/MapViewPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import pb from './lib/pocketbase';
 
 // Create a theme instance.
 const theme = createTheme({
@@ -52,6 +53,8 @@ function App() {
     localStorage.setItem('isLoggedIn', isLoggedIn.toString());
     console.log("isLoggedIn: " + isLoggedIn);
   }, [isLoggedIn]);
+
+  console.log("pb: ", pb.baseUrl);
 
   return (
     <ThemeProvider theme={theme}>
