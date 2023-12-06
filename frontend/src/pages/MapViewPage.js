@@ -48,9 +48,6 @@ export default function MapViewPage() {
                                         <BubbleComponent />
                                     </AdvancedMarker>
                                 ))}
-                                {/* <AdvancedMarker position={position} onClick={() => setOpen(true)}>
-                                    <BubbleComponent />
-                                </AdvancedMarker> */}
                             </Map>
                         </div>
                     </APIProvider>

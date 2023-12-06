@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Container, Box, Grid, Avatar } from "@mui/material";
-import Sidebar from "../components/Sidebar";
-import ProfileCard from "../components/ProfileCard";
 import PersonalInformationForm from "../components/PersonalInformationForm";
 import ContactInformationForm from "../components/ContactInformationForm";
 import NavBar from "../components/NavBar";
 import pb from "../lib/pocketbase";
-import { CardContainer, GreenHeaderContainer, MainContentContainer, PageContainer } from "../components/styles/Containers";
-import { BranchHeaderContainer } from "../components/styles/BranchGlobals";
+import {  GreenHeaderContainer, MainContentContainer, PageContainer } from "../components/styles/Containers";
 import { EmployeeHeader, EmployeeHeaderContainer, EmployeeInformationContainer, EmployeePosition, InformationWrapper, ProfilePicture } from "../components/styles/EmployeeView.styled";
-import profilePic from "../assets/john-adams.png"
-
 
 pb.autoCancellation(false);
 
