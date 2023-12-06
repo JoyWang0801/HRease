@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const GreenBox = styled.div `
-    color: red;
     width: 100%;
     height: 100%;
     background-color: var(--hre-light-green);
@@ -74,4 +73,24 @@ export const ProfileCardInfoWrapper = styled.div `
     flex: 3;
     padding-right: 20px;
     margin-right: 50px;
+`;
+
+export const UL = styled.ul `
+    list-style: none;
+    font-size: 32px;
+    margin-top: 60px;
+`;
+
+export const LI = styled.li `
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`;
+
+export const Label = styled.div `
+`;
+
+export const Info = styled.div `
+    margin-right: 40px;
 `;

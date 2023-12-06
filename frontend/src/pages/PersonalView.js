@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import '../components/styles/digital-clock.css'
 import Sidebar from "../components/Sidebar";
 import NavBar from "../components/NavBar";
-import { GreenBox, TopWrapper, ProfileCard, Time, ClockInOutButton, ContainerWrapper, EmployeeName, EmployeePronouns, EmployeeRole, ProfilePic, ProfileCardInfoWrapper } from '../components/styles/PersonalView.style';
+import { GreenBox, UL, Label, Info, LI, TopWrapper, ProfileCard, Time, ClockInOutButton, ContainerWrapper, EmployeeName, EmployeePronouns, EmployeeRole, ProfilePic, ProfileCardInfoWrapper } from '../components/styles/PersonalView.style';
 // import DigitalClock from "../components/DigitalClock";
 import johnPic from '../assets/john-adams.png'
 
@@ -49,6 +49,7 @@ const PersonalView = () => {
         setClockedIn(!clockedIn);
     }
 
+
     return (
         <Container disableGutters maxWidth={false}>
             <Box mt={0} mb={4}>
@@ -71,7 +72,30 @@ const PersonalView = () => {
                             <Time>8:59</Time>
                             <ClockInOutButton>Clock In</ClockInOutButton>
                         </TopWrapper>
-                        <GreenBox>Hello World</GreenBox>
+                        <GreenBox>
+                            <UL>
+                                <LI>
+                                    <Label>Username:</Label>
+                                    <Info>Info</Info>
+                                </LI>
+                                <LI>
+                                    <Label>Password:</Label>
+                                    <Info>Info</Info>
+                                </LI>
+                                <LI>
+                                    <Label>2FA:</Label>
+                                    <Info>Info</Info>
+                                </LI>
+                                <LI>
+                                    <Label>Work Email:</Label>
+                                    <Info>Info</Info>
+                                </LI>
+                                <LI>
+                                    <Label>Department & Branch:</Label>
+                                    <Info>Info</Info>
+                                </LI>
+                            </UL>
+                        </GreenBox>
                     </ContainerWrapper>
                 </Grid>
             </Box>
