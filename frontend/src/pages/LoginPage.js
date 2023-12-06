@@ -7,6 +7,7 @@ export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [userID, setUserID] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -14,6 +15,7 @@ export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
         try {
             let user = await pb.collection('users').authWithPassword(email, password);
             setIsLoggedIn(true);
+            setUserID(user.record.id);
             console.log('User logged in', user);
             localStorage.setItem('authToken', user.token);
 
@@ -21,12 +23,12 @@ export default function LoginPage ({ setIsLoggedIn, isLoggedIn}){
             console.error('Failed to login:', err);
             setError(err.message);
         }
-
     };
 
     if(isLoggedIn)
     {
-        navigate('/personal')
+        navigate('/personal');
+        localStorage.setItem('userID', userID);
     }
 
     return (

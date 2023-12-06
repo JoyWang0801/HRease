@@ -15,34 +15,34 @@ const PersonalInformationForm = ({ formData }) => {
         <CardHeader>Personal Information</CardHeader>
         <FullHolder>
           <Legend>Name</Legend>
-          John Adams
-          {/* {formData.firstName} {formData.lastName} */}
+          {/* John Adams */}
+          {formData.firstName} {formData.lastName}
         </FullHolder>
         <FullHolder>
           <Legend>Address</Legend>
-          123, Cornelia Street NE, T2T 1K8
-          {/* {formData.address} */}
+          {/* 123, Cornelia Street NE, T2T 1K8 */}
+          {formData.address}
         </FullHolder>
         <FourGrid>
           <HalfHolder>
             <Legend>City</Legend>
-            Calgary
-            {/* {formData.city} */}
+            {/* Calgary */}
+            {formData.city}
           </HalfHolder>
           <HalfHolder>
             <Legend>Province</Legend>
-            Alberta
-            {/* {formData.province} */}
+            {/* Alberta */}
+            {formData.province}
           </HalfHolder>
           <HalfHolder>
             <Legend>DOB</Legend>
-            01-23-1997
-            {/* {formData.dateOfBirth} */}
+            {/* 01-23-1997 */}
+            {formData.dateOfBirth}
           </HalfHolder>
           <HalfHolder>
             <Legend>Gender</Legend>
-            Male
-            {/* {formData.gender} */}
+            {/* Male */}
+            {formData.gender}
           </HalfHolder>
         </FourGrid>
       </InformationMatrix>
