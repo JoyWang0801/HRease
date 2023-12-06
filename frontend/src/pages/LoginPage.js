@@ -70,6 +70,9 @@ export default function LoginPage({ setIsLoggedIn, isLoggedIn }) {
                             Welcome to HRease
                         </Typography>
                     </Box>
+                    <Typography component="h3" variant="body1" color="error">
+                        {error}
+                    </Typography>
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
