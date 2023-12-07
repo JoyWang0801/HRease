@@ -86,6 +86,6 @@ export const PositonType = styled.div`
 
 export const ProfilePicture = styled.img`
     border-radius: 50%;
-    width: 90%;
-    height: width;
+    width: 150px;
+    height: 150px;
 `
