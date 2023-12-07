@@ -129,10 +129,6 @@ function DetailedBranchPage({branch}) {
                 <GreenHeaderContainer>
                     <BranchHeaderContainer>
                         <ButtonContainer>
-                            <BackButton type="button">
-                                <FAArrow icon={faArrowLeft}></FAArrow>
-                            </BackButton>
-                            <ButtonLabel>Branches</ButtonLabel>
                         </ButtonContainer>
                         <BranchInformationWrapper>
                             <HeaderMatrix>
