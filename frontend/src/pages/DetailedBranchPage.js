@@ -15,41 +15,41 @@ import pb from "../lib/pocketbase";
 
 
 
-const emp1 = {
-    firstName: "Nohra",
-    lastName: "Aaron",
-    position: "Sales Associate",
-    jobType: "Part-time",
-    picture: nohraPic
-}
+// const emp1 = {
+//     firstName: "Nohra",
+//     lastName: "Aaron",
+//     position: "Sales Associate",
+//     jobType: "Part-time",
+//     picture: nohraPic
+// }
 
-const emp2 = {
-    firstName: "John",
-    lastName: "Adams",
-    position: "Manager",
-    jobType: "Full-time",
-    picture: johnPic
-}
+// const emp2 = {
+//     firstName: "John",
+//     lastName: "Adams",
+//     position: "Manager",
+//     jobType: "Full-time",
+//     picture: johnPic
+// }
 
-const emp3 = {
-    firstName: "John",
-    lastName: "Doe",
-    position: "Sales Associate",
-    jobType: "Full-time",
-    picture: johnPic
-}
+// const emp3 = {
+//     firstName: "John",
+//     lastName: "Doe",
+//     position: "Sales Associate",
+//     jobType: "Full-time",
+//     picture: johnPic
+// }
 
-const branch1 = {
-    name: "Brentwood",
-    city: "Calgary",
-    province: "AB",
-    size: 61
-}
+// const branch1 = {
+//     name: "Brentwood",
+//     city: "Calgary",
+//     province: "AB",
+//     size: 61
+// }
 
-const allEmployees = [emp1, emp3]
+// const allEmployees = [emp1, emp3]
 
 function DetailedBranchPage({branch}) {
-    const [letterFilter, setLetterFilter] = useState("");
+    const [letterFilter, setLetterFilter] = useState("All");
     const [isMobile, setIsMobile] = useState(false);
     const [employees, setEmployees] = useState([]);
     // const [filteredNames, setFilteredNames] = useState(allEmployees);
@@ -112,11 +112,10 @@ function DetailedBranchPage({branch}) {
 
             }
 
-            getInformation(branchInfo);
             return () => {
                 window.removeEventListener('resize', updateViewport);
             }
-        }, []);
+        }, [branchInfo]);
 
     const handleLetterClick = (letter) => {
         setLetterFilter(letter)

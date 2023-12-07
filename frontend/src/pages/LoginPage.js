@@ -31,7 +31,6 @@ export default function LoginPage({ setIsLoggedIn, isLoggedIn }) {
         localStorage.setItem('userID', userID);
         console.log("userID: " + userID);
         navigate('/personal', { replace: true }); // Navigate to the home page
-        window.location.reload();
     }
 
     return (
