@@ -13,45 +13,10 @@ import johnPic from '../assets/john-adams.png'
 import {useLocation} from "react-router-dom";
 
 
-
-// const emp1 = {
-//     firstName: "Nohra",
-//     lastName: "Aaron",
-//     position: "Sales Associate",
-//     jobType: "Part-time",
-//     picture: nohraPic
-// }
-
-// const emp2 = {
-//     firstName: "John",
-//     lastName: "Adams",
-//     position: "Manager",
-//     jobType: "Full-time",
-//     picture: johnPic
-// }
-
-// const emp3 = {
-//     firstName: "John",
-//     lastName: "Doe",
-//     position: "Sales Associate",
-//     jobType: "Full-time",
-//     picture: johnPic
-// }
-
-// const branch1 = {
-//     name: "Brentwood",
-//     city: "Calgary",
-//     province: "AB",
-//     size: 61
-// }
-
-// const allEmployees = [emp1, emp3]
-
 function DetailedBranchPage({branch}) {
     const [letterFilter, setLetterFilter] = useState("All");
     const [isMobile, setIsMobile] = useState(false);
     const [employees, setEmployees] = useState([]);
-    // const [filteredNames, setFilteredNames] = useState(allEmployees);
     const [filteredNames, setFilteredNames] = useState([]);
 
 
@@ -95,11 +60,9 @@ function DetailedBranchPage({branch}) {
         setLetterFilter(letter)
         
         if (letter === 'All') {
-            // setFilteredNames(allEmployees);
             setFilteredNames(employees);
         }
         else {
-            // const filteredEmployees = allEmployees.filter((person) => {
             const filteredEmployees = employees.filter((person) => {
                 const firstLetterLastName = person.lastName.charAt(0).toUpperCase();
                 return firstLetterLastName === letter;
@@ -112,7 +75,6 @@ function DetailedBranchPage({branch}) {
 
     const handleSearchChange = (event) => {
         console.log(event.target.value);
-        // const filteredEmployees = allEmployees.filter((person) => {
         const filteredEmployees = employees.filter((person) => {
             return (person.firstName.toLowerCase().includes(event.target.value.toLowerCase()) ||
             (person.lastName.toLowerCase().includes(event.target.value.toLowerCase())));
@@ -132,9 +94,7 @@ function DetailedBranchPage({branch}) {
                         </ButtonContainer>
                         <BranchInformationWrapper>
                             <HeaderMatrix>
-                                {/*<BranchHeader>{branch1.name} • {branch1.city}, {branch1.province}</BranchHeader>*/}
                                 <BranchHeader>{branchName[0]} • {branchName[1]}, {branchName[2].split(' ')[1]}</BranchHeader>
-                                {/*{!isMobile ? <TagCounter>{allEmployees.length} Employees</TagCounter> : null}*/}
                                 {!isMobile ? <TagCounter>{employees.length} Employees</TagCounter> : null}
                             </HeaderMatrix>
                             {!isMobile ? <AlphabetBar onLetterClick={handleLetterClick} /> : <SearchBar handleSearchChange={handleSearchChange}/>}
