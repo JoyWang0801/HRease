@@ -47,11 +47,14 @@ export const BranchHeader = styled.h1`
 `
 
 export const TagCounter = styled.div`
-    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     line-height: clamp(26px, 2vw, 30px);
     height: clamp(26px, 2vw, 30px);
     border-radius: 10px;
-    font-size: 14px;
+    font-size: clamp(10px, 2vw, 14px);
+    width: 150px;
     background-color: var(--hre-light-green);
     color: var(--hre-dark-green);
 

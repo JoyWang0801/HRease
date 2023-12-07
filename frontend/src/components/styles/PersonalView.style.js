@@ -13,6 +13,11 @@ export const TopWrapper = styled.div `
     flex-direction: row;
     // justify-content: space-evenly;
     gap: 50px;
+    width: 100%;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
 `;
 
 export const Time = styled.div `
@@ -64,7 +69,9 @@ export const EmployeeName = styled.div `
 `;
 
 export const ProfilePic = styled.img `
+    border-radius: 50%;
     width: 175px;
+    height: 175px;
 `;
 
 export const EmployeeRole = styled.div `

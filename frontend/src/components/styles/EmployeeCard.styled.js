@@ -86,6 +86,6 @@ export const PositonType = styled.div`
 
 export const ProfilePicture = styled.img`
     border-radius: 50%;
-    width: clamp(100px, 3vw, 150px);
-    height: clamp(100px, 3vw, 150px);
+    width: clamp(100px, 10vw, 150px);
+    height: clamp(100px, 10vw, 150px);
 `
