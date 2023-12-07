@@ -33,6 +33,13 @@ export const ClockInOutButton = styled.div `
     display: flex;
     align-items: center;
     flex: 1;
+    margin-left: 5%;
+    cursor: pointer;
+
+    background-color: ${(props) => props.clockIn ? 'white' : 'var(--hre-dark-green)'};
+    border: ${(props) => props.clockIn ? '2px solid var(--hre-dark-green)' : '2px solid var(--hre-dark-green)'};
+
+    color: ${(props) => props.clockIn ? 'var(--hre-dark-green)' : 'white'};
 `;
 
 export const ProfileCard = styled.div `
@@ -46,7 +53,7 @@ export const ContainerWrapper = styled.div `
     display: flex;
     flex-direction: column;
     margin-top: 100px;
-    width: 1000px;
+    width: 70%;
     align-items: center;
     gap: 100px;
 `;

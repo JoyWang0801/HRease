@@ -48,7 +48,6 @@ function NavBar() {
                 <NavItems>
                     <StyledLink to={"/personal"}>Dashboard</StyledLink>
                     {isManager && <StyledLink to={"/employee"}>Employee</StyledLink>}
-                    {isManager && <StyledLink to={"/detailBranch"}>Branches</StyledLink>}
                     <StyledLink to={"/map"}>Map</StyledLink>
                 </NavItems>
                 <div style={{ marginTop: isMobile ? '0' : 'auto', width: '100%' }}>
