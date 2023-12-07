@@ -13,8 +13,9 @@ import { useParams } from "react-router-dom";
 const PersonalView = () => {
     const [clockedIn, setClockedIn] = useState(false);
     const [clockInRecord, setClockInRecord] = useState();
-    let key = localStorage.getItem('authToken');
     let currentTime = new Date();
+    const [time, setTime] = useState(`${currentTime.getHours}:${currentTime.getSeconds}`);
+    let key = localStorage.getItem('authToken');
     const [employeeData, setEmployeeData] = useState("");
     const [profileImageUrl, setProfileImageUrl] = useState("");
     const [userData, setUserData] = useState("");
@@ -24,6 +25,14 @@ const PersonalView = () => {
     const params = useParams().id;
     const userID = localStorage.getItem('userID');
     // console.log(pb.authStore.model.email)
+
+
+    setInterval(() => {
+        const now = new Date();
+        const hours = now.getHours();
+        const min = now.getMinutes();
+        setTime(`${hours}:${min}`);
+    }, 1000)
 
 
     async function punchClock() {
@@ -148,8 +157,8 @@ const PersonalView = () => {
                                     {/* <EmployeePronouns>They/Them</EmployeePronouns> */}
                                 </ProfileCardInfoWrapper>
                             </ProfileCard>
-                            <Time>8:59</Time>
-                            <ClockInOutButton>Clock In</ClockInOutButton>
+                            <Time>{time}</Time>
+                            <ClockInOutButton onClick={punchClock} clockIn={clockedIn}>{clockedIn ? 'Clock Out' : 'Clock In'}</ClockInOutButton>
                         </TopWrapper>
                         <GreenBox>
                             <UL>
