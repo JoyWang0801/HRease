@@ -11,6 +11,7 @@ import EmployeeCard from "../components/EmployeeCard";
 import nohraPic from '../assets/nohra-aaron.png'
 import johnPic from '../assets/john-adams.png'
 import {useLocation} from "react-router-dom";
+import pb from "../lib/pocketbase";
 
 
 
@@ -52,11 +53,14 @@ function DetailedBranchPage({branch}) {
     const [isMobile, setIsMobile] = useState(false);
     const [employees, setEmployees] = useState([]);
     // const [filteredNames, setFilteredNames] = useState(allEmployees);
-    const [filteredNames, setFilteredNames] = useState([]);
+    const [filteredNames, setFilteredNames] = useState(employees);
+    const [branchName, setBranchName] = useState(["", "", ""]);
 
 
     const {state} = useLocation();
-    const { branchInfo } = state || {};
+    const { branchInfo } = state || { branchInfo: [] };
+
+
 
     useEffect(() => {
             const updateViewport = () => {
@@ -67,23 +71,45 @@ function DetailedBranchPage({branch}) {
 
             window.addEventListener('resize', updateViewport);
 
-            function getInformation(branchInfo)
-            {
-                const eList = []
-                for (const [key, value] of Object.entries(branchInfo)) {
-                    value.expand.employees.forEach((element) => {
-                        element["role"] = value.role;
-                        element["jobType"] = value.employmentType;
-                        eList.push(element);
+            async function getInformation(branchInfo) {
+                console.log("branchInfo", branchInfo)
+                if(branchInfo.length <= 0)
+                {
+                    const userID = localStorage.getItem('userID').toString();
+                    console.log(userID.toString())
+                    let filterMsg = `loginInfo = ` + '"' + userID + '"';
+                    console.log("filterMsg: ", filterMsg);
+                    const employeeRecord = await pb.collection('employee').getList(1, 1, {
+                        filter: filterMsg,
                     });
+                    //console.log("employeeRecord", employeeRecord.items[0].id);
+                    const branchRecord = await pb.collection('branch').getList(1, 50, {
+                        filter: `employees ~ "${ employeeRecord.items[0].id}"`,
+                        expand: 'employees',
+                    });
+                    branchInfo = branchRecord.items;
+                    console.log("branchRecord",branchRecord.items);
+                    console.log("branchInfo", branchInfo);
                 }
 
-                setEmployees(eList);
-                setFilteredNames(eList);
-            }
+                if (branchInfo.length > 0) {
+                    console.log("start in > 0");
+                    const eList = []
+                    for (const [key, value] of Object.entries(branchInfo)) {
+                        console.log("value", value);
+                        value.expand.employees.forEach((element) => {
+                            element["role"] = value.role;
+                            element["jobType"] = value.employmentType;
+                            eList.push(element);
+                        });
+                    }
+                    setEmployees(eList);
 
-            if (branchInfo) {
-                getInformation(branchInfo);
+                    const branchName = branchInfo[0].address.split(',');
+                    console.log("branchName", branchName);
+                    setBranchName(branchName);
+                }
+
             }
 
             return () => {
@@ -120,11 +146,10 @@ function DetailedBranchPage({branch}) {
         setFilteredNames(filteredEmployees);
     }
 
-    const branchName = branchInfo[0].address.split(',');
-    console.log(employees);
+
     return (
         <PageContainer>
-            <NavBar />
+            <NavBar/>
             <MainContentContainer>
                 <GreenHeaderContainer>
                     <BranchHeaderContainer>
@@ -141,36 +166,39 @@ function DetailedBranchPage({branch}) {
                                 {/*{!isMobile ? <TagCounter>{allEmployees.length} Employees</TagCounter> : null}*/}
                                 {!isMobile ? <TagCounter>{employees.length} Employees</TagCounter> : null}
                             </HeaderMatrix>
-                            {!isMobile ? <AlphabetBar onLetterClick={handleLetterClick} /> : <SearchBar handleSearchChange={handleSearchChange}/>}
+                            {!isMobile ? <AlphabetBar onLetterClick={handleLetterClick}/> :
+                                <SearchBar handleSearchChange={handleSearchChange}/>}
                         </BranchInformationWrapper>
                     </BranchHeaderContainer>
                 </GreenHeaderContainer>
                 <OuterContentContainer>
                     <ContentContainer>
-                        {   
+                        {
                             isMobile ? null
-                            :
-                            <ContentWrapper>
-                                <SearchBar handleSearchChange={handleSearchChange}/>
-                            </ContentWrapper>
+                                :
+                                <ContentWrapper>
+                                    <SearchBar handleSearchChange={handleSearchChange}/>
+                                </ContentWrapper>
                         }
                         <ContentWrapper>
                             <HeaderMatrix>
-                                <AlphabetHeader letter={letterFilter} />
-                                {isMobile ? null : <EmployeeTagCounter>{filteredNames.length} Employees</EmployeeTagCounter>}
+                                <AlphabetHeader letter={letterFilter}/>
+                                {isMobile ? null :
+                                    <EmployeeTagCounter>{filteredNames.length} Employees</EmployeeTagCounter>}
                             </HeaderMatrix>
                             <CardContainer>
                                 {filteredNames.map((employee, i) => (
-                                    <EmployeeCard key={i} employee={employee} />
+                                    <EmployeeCard key={i} employee={employee}/>
                                 ))}
                             </CardContainer>
                         </ContentWrapper>
                     </ContentContainer>
-                    {isMobile ? <AlphabetBar onLetterClick={handleLetterClick} /> : null}
+                    {isMobile ? <AlphabetBar onLetterClick={handleLetterClick}/> : null}
                 </OuterContentContainer>
             </MainContentContainer>
         </PageContainer>
     )
+
 }
 
 export default DetailedBranchPage

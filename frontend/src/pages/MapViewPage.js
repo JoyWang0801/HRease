@@ -8,7 +8,7 @@ import BubbleComponent from "../components/BubbleComponent";
 import pb from "../lib/pocketbase";
 import { useNavigate } from "react-router-dom";
 
-export default function MapViewPage() {
+export default function MapViewPage({isLoggedIn}) {
     const position = { lat: 51.11949664317023, lng: -114.04654247485743 };
     const [open, setOpen] = useState(false);
     const [rows, setRows] = useState();
@@ -33,8 +33,7 @@ export default function MapViewPage() {
                     if (!acc[record.address]) {
                         acc[record.address] = [];
                     }
-
-                    // Push [name, age] pair to the corresponding address
+                    // Push to the corresponding address
                     acc[record.address].push(record);
                     return acc;
                 }, {});
@@ -73,9 +72,17 @@ export default function MapViewPage() {
                                 <Map zoom={12.5} center={position} mapId={process.env.REACT_APP_MAP_ID}>
                                     {rows.map((row) => (
                                         <AdvancedMarker position={{lat: row[0].lat, lng: row[0].long}}
+                                                        key={row[0].id}
                                                         onClick={() => {
                                                             setOpen(true);
-                                                            navigate('/detailBranch', {state: {branchInfo: row}});
+                                                            if(isLoggedIn)
+                                                            {
+                                                                navigate('/detailBranch', {state: {branchInfo: row}})
+                                                            }
+                                                            else
+                                                            {
+                                                                navigate('/login')
+                                                            }
                                                         }}>
                                             <BubbleComponent branchInfo={row}/>
                                         </AdvancedMarker>
