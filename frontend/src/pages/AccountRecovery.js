@@ -1,10 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { Button, TextField, Container, Typography, Box, CssBaseline, Paper } from '@mui/material';
-import pb from "../lib/pocketbase";
 import login_background from '../assets/login_background.jpg';
 import logo from '../assets/Hrease_logo.png';
-import { useTheme } from '@emotion/react';
-import { useNavigate } from 'react-router-dom';
 import { Description, EmailInput, Wrapper, NextButton } from '../components/styles/AccountRecovery.styled';
 
 

@@ -22,4 +22,9 @@ export const Wrapper = styled.div `
 export const NextButton = styled.div `
     background-color: var(--hre-green);
     border-radius: 40px;
+    text-align: center;
+    width: 150px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    cursor: pointer;
 `;
